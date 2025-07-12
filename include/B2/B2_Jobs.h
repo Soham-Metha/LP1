@@ -1,5 +1,5 @@
 #pragma once
-#define MAX_JOB_QUEUE_SIZE 100
+#define MAX_JOB_QUEUE_SIZE 10
 
 typedef struct Job
 {
