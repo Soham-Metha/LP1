@@ -1,5 +1,4 @@
 #include <B2_Algos.h>
-#include <B2_Display.h>
 #include <stdio.h>
 
 int main()

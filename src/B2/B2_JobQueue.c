@@ -2,15 +2,6 @@
 #include <B2_JobQueue.h>
 #include <stdio.h>
 
-void addJobToQueue(Job jobQueue[], int *len, Job job)
-{
-    if (*len < MAX_JOB_QUEUE_SIZE)
-    {
-        jobQueue[*len] = job;
-        (*len)++;
-    }
-}
-
 int getNextBatchArrivalTime(Job jobQueue[], int rear, int timestamp)
 {
     int res;
@@ -37,12 +28,5 @@ Job *getNextShortestJobInQueue(Job jobQueue[], int rear, int timestamp)
         }
     }
 
-    if (jobQueue[shortest].burstTime <= 0)
-    {
-        return NULL;
-    }
-    else
-    {
-        return &jobQueue[shortest];
-    }
+    return (jobQueue[shortest].burstTime <= 0) ? NULL : &jobQueue[shortest];
 }

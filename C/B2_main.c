@@ -1,11 +1,94 @@
-#include <B2_Algos.h>
-#include <B2_Display.h>
-#include <B2_JobQueue.h>
 #include <stdio.h>
 
-int __timestamp = 0;
+#define MAX_JOB_QUEUE_SIZE 100
+#define cmpAT(a, b) a.arrivalTime < b.arrivalTime
+#define cmpBT(a, b) a.burstTime < b.burstTime
+#define cmpPRI(a, b) (a.arrivalTime <= b.arrivalTime) && (a.priority > b.priority)
 
-#define ClearTimer() __timestamp = 0
+typedef struct Job
+{
+    int id;
+    int arrivalTime;
+    int burstTime;
+    int priority;
+} Job;
+
+struct TableElement
+{
+    int ID;
+    int AT;
+    int BT;
+    int PRI;
+    int CT;
+    int TAT;
+    int WT;
+} op[MAX_JOB_QUEUE_SIZE];
+
+int __jobCnt = 1;
+
+int getNextBatchArrivalTime(Job jobQueue[], int rear, int timestamp)
+{
+    int res;
+    for (res = 0; res < rear && jobQueue[res].arrivalTime <= timestamp; res++)
+        ;
+
+    return (res >= rear) ? -1 : jobQueue[res].arrivalTime;
+}
+
+Job *getNextShortestJobInQueue(Job jobQueue[], int rear, int timestamp)
+{
+    int shortest = 0;
+    for (int i = 0; i < rear && jobQueue[i].arrivalTime <= timestamp; i++)
+    {
+        if (jobQueue[shortest].burstTime <= 0)
+            shortest = i;
+        else if (jobQueue[i].burstTime > 0 && cmpBT(jobQueue[i], jobQueue[shortest]))
+            shortest = i;
+    }
+
+    return (jobQueue[shortest].burstTime <= 0) ? NULL : &jobQueue[shortest];
+}
+
+void initTable(Job jobQueue[], int len)
+{
+    for (int i = 0; i < len; i++)
+        op[jobQueue[i].id] = (struct TableElement){.ID = jobQueue[i].id,
+                                                   .AT = jobQueue[i].arrivalTime,
+                                                   .BT = jobQueue[i].burstTime,
+                                                   .PRI = jobQueue[i].priority};
+}
+
+void UpdateTableElementCT(int index, int ct)
+{
+    op[index].CT = ct;
+    op[index].TAT = ct - op[index].AT;
+    op[index].WT = (ct - op[index].AT) - op[index].BT;
+}
+
+void printTable(int start, int end)
+{
+    int avgTAT = 0, avgWT = 0;
+
+    printf("\n"
+           "\n\t╭──────┬─────┬─────┬──────┬─────┬──────┬─────╮"
+           "\n\t│ ID   │ AT  │ BT  │ PRI  │ CT  │ TAT  │ WT  │"
+           "\n\t├──────┼─────┼─────┼──────┼─────┼──────┼─────┤");
+
+    for (int i = start; i <= end; i++)
+    {
+        printf("\n\t│ %-4d │ %-3d │ %-3d │ %-4d │ %-3d │ %-4d │ %-3d │", op[i].ID, op[i].AT, op[i].BT, op[i].PRI,
+               op[i].CT, op[i].TAT, op[i].WT);
+
+        avgTAT += op[i].TAT;
+        avgWT += op[i].WT;
+    }
+
+    printf("\n\t╰──────┴─────┴─────┴──────┴─────┴──────┴─────╯");
+    printf("\n\t Avg. TAT: %.2f", (float)avgTAT / (end - start + 1));
+    printf("\t   Avg. WT : %.2f", (float)avgWT / (end - start + 1));
+}
+
+int __timestamp = 0;
 
 #define sortJobs(jobQueue, len, func)                                                                                  \
     {                                                                                                                  \
@@ -57,9 +140,7 @@ void B2_SRTN(Job jobQueue[], int len)
     {
         Job *job = getNextShortestJobInQueue(jobQueue, len, __timestamp);
         if (!job) // All jobs are completed
-        {
             break;
-        }
 
         // Job has arrived, process it
         int gap = getNextBatchArrivalTime(jobQueue, len, __timestamp) - __timestamp;
@@ -68,9 +149,7 @@ void B2_SRTN(Job jobQueue[], int len)
         processJob(*job);
         __timestamp += gap;
         if (job->burstTime <= 0)
-        {
             UpdateTableElementCT(job->id, __timestamp);
-        }
     }
 }
 
@@ -101,9 +180,8 @@ void B2_RR(Job jobQueue[], int len, int timeSlice)
         processJob(jobQueue[i]);
         __timestamp += gap;
         if (jobQueue[i].burstTime <= 0)
-        {
             UpdateTableElementCT(jobQueue[i].id, __timestamp);
-        }
+
         flag = 1;
         i++;
     }
@@ -117,7 +195,7 @@ void printTimestamp()
 void B2_RunAlgos(int i, Job jobQueue[], int len)
 {
     initTable(jobQueue, 3);
-    ClearTimer();
+    __timestamp = 0;
     sortJobs(jobQueue, len, cmpAT);
     printf("\n\033[0m");
     switch (i)
@@ -138,10 +216,43 @@ void B2_RunAlgos(int i, Job jobQueue[], int len)
         printf("RR_25:\t");
         B2_RR(jobQueue, len, 25);
         break;
-    default:
-        break;
     }
     printTimestamp();
     printTable((i - 1) * len + 1, (i * len));
     printf("\n\n\033[0m");
+}
+
+void processJob(Job job)
+{
+    printTimestamp();
+    printf("\033[41m P%d ", job.id);
+}
+
+int main()
+{
+    Job jobQueueFCFS[] = {{.id = __jobCnt++, .priority = 4, .arrivalTime = 0, .burstTime = 100},
+                          {.id = __jobCnt++, .priority = 6, .arrivalTime = 0, .burstTime = 90},
+                          {.id = __jobCnt++, .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+
+    Job jobQueuePRI[] = {{.id = __jobCnt++, .priority = 4, .arrivalTime = 0, .burstTime = 100},
+                         {.id = __jobCnt++, .priority = 6, .arrivalTime = 0, .burstTime = 90},
+                         {.id = __jobCnt++, .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+
+    Job jobQueueSRTN[] = {{.id = __jobCnt++, .priority = 4, .arrivalTime = 0, .burstTime = 100},
+                          {.id = __jobCnt++, .priority = 6, .arrivalTime = 0, .burstTime = 90},
+                          {.id = __jobCnt++, .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+
+    Job jobQueueRR[] = {{.id = __jobCnt++, .priority = 4, .arrivalTime = 0, .burstTime = 100},
+                        {.id = __jobCnt++, .priority = 6, .arrivalTime = 0, .burstTime = 90},
+                        {.id = __jobCnt++, .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+
+    B2_RunAlgos(1, jobQueueFCFS, 3);
+
+    B2_RunAlgos(2, jobQueuePRI, 3);
+
+    B2_RunAlgos(3, jobQueueSRTN, 3);
+
+    B2_RunAlgos(4, jobQueueRR, 3);
+
+    return 0;
 }

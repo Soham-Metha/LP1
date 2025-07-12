@@ -22,7 +22,6 @@ void UpdateTableElementCT(int index, int ct)
 
 void printTable(int start, int end)
 {
-
     int avgTAT = 0, avgWT = 0;
 
     printf("\n"
