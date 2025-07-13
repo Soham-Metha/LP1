@@ -2,7 +2,7 @@
 #include <B1_Fork.h>
 #include <B1_Philosopher.h>
 
-#define MAX_PHILOSOPHER_COUNT
+#define MAX_PHILOSOPHER_COUNT 10
 
 Philosopher philosophers[MAX_PHILOSOPHER_COUNT];
 Fork forks[MAX_PHILOSOPHER_COUNT];
