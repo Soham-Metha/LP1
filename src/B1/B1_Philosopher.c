@@ -12,7 +12,7 @@ const char *colors[8] = {
     "\033[103m"  // 7 - Light Yellow
 };
 
-#define msgFmt(str, i) printf("\n\033[0m%sPhilosopher %d : [ %-25s ]  \033[0m", bg, i, str);
+#define msgFmt(str, i) printf("\n\033[0m%sPhilosopher %d : [ %-25s ] \033[0m", bg, i, str);
 
 void *letThinkersThink(void *philosopherNo)
 {
@@ -30,10 +30,10 @@ void *letThinkersThink(void *philosopherNo)
         if (areForksAvailable(i, (i + 1) % id->count))
         {
             wait_pickUpFork(i);
-            msgFmt("PICKED UP FORK", i) printf(" : Fork I%d", i);
+            msgFmt("PICKED UP FORK", i) printf(" Fork I%d", i);
 
             wait_pickUpFork((i + 1) % id->count);
-            msgFmt("PICKED UP FORK", i) printf(" : Fork I%d", (i + 1) % id->count);
+            msgFmt("PICKED UP FORK", i) printf(" Fork I%d", (i + 1) % id->count);
 
             msgFmt("DONE GRABBING UTENSILS", i);
             signal_doneGrabbingUtensils();
@@ -43,10 +43,10 @@ void *letThinkersThink(void *philosopherNo)
             msgFmt("DONE EATING", i);
 
             signal_putDownFork((i + 1) % id->count);
-            msgFmt("PUT DOWN FORK", i) printf(" : Fork I%d", ((i + 1) % id->count));
+            msgFmt("PUT DOWN FORK", i) printf(" Fork I%d", ((i + 1) % id->count));
 
             signal_putDownFork(i);
-            msgFmt("PUT DOWN FORK", i) printf(" : Fork I%d", i);
+            msgFmt("PUT DOWN FORK", i) printf(" Fork I%d", i);
         }
         else
         {
