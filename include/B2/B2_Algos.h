@@ -1,10 +1,10 @@
 #pragma once
-#include <B2_JobQueue.h>
 #include <B2_Display.h>
+#include <B2_JobQueue.h>
 
 #define cmpAT(a, b) a.arrivalTime < b.arrivalTime
 #define cmpBT(a, b) a.burstTime < b.burstTime
-#define cmpPRI(a, b) (a.arrivalTime <= b.arrivalTime) && (a.priority > b.priority)
+#define cmpPRI(a, b) a.priority > b.priority
 #define sortJobs(jobQueue, len, func)                                                                                  \
     {                                                                                                                  \
         for (int i = 1; i < len; i++)                                                                                  \
@@ -20,9 +20,9 @@
 typedef enum AlgoName
 {
     NP_FCFS,
-    NP_PRI,
     P_SRTN,
-    P_RR
+    P_RR,
+    NP_PRI
 } AlgoName;
 
 /*

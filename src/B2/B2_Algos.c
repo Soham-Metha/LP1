@@ -11,28 +11,12 @@ void B2_FCFS(Job jobQueue[], int len)
         // here, cpu will be idle from '10' to '15'
         if (__timestamp < jobQueue[i].arrivalTime)
         {
-            processJob((Job){.id = -1});
+            processJob((Job){.id = 0});
             __timestamp = jobQueue[i].arrivalTime;
         }
         processJob(jobQueue[i]);
         __timestamp += jobQueue[i].burstTime;
 
-        UpdateTableElementCT(jobQueue[i].id, __timestamp);
-    }
-}
-
-void B2_PRI(Job jobQueue[], int len)
-{
-    sortJobs(jobQueue, len, cmpPRI);
-    for (int i = 0; i < len; i++)
-    {
-        if (__timestamp < jobQueue[i].arrivalTime)
-        {
-            processJob((Job){.id = -1});
-            __timestamp = jobQueue[i].arrivalTime;
-        }
-        processJob(jobQueue[i]);
-        __timestamp += jobQueue[i].burstTime;
         UpdateTableElementCT(jobQueue[i].id, __timestamp);
     }
 }
@@ -95,6 +79,37 @@ void B2_RR(Job jobQueue[], int len, int timeSlice)
         { // mark flag saying "atleast 1 job is remaining"
             flag = 1;
         }
+        i++;
+    }
+}
+
+void B2_PRI(Job jobQueue[], int len)
+{
+    sortJobs(jobQueue, len, cmpPRI);
+
+    int i = 0, flag = 0;
+    while (flag || i < len)
+    {
+        if ((i >= len && flag))
+        {
+            i = 0;
+        }
+        if (jobQueue[i].arrivalTime > __timestamp)
+        { // Aleast one job exists that hasnt arrived yet, so set flag
+            flag = 1;
+            continue;
+        }
+        if (jobQueue[i].burstTime <= 0)
+        {
+            i++;
+            continue;
+        }
+
+        processJob(jobQueue[i]);
+        __timestamp += jobQueue[i].burstTime;
+        jobQueue[i].burstTime = 0;
+        UpdateTableElementCT(jobQueue[i].id, __timestamp);
+
         i++;
     }
 }
