@@ -17,14 +17,14 @@ const char *msg[13] = {" WAITING TO GRAB UTENSILS ", " STARTED GRABING UTENSILS 
 #define EAT()                                                                                                          \
     {                                                                                                                  \
         printf(msgFmt, bg, i, msg[4]);                                                                                 \
-        sleep((rand() % 10) + 1);                                                                                      \
+        sleep((rand() % 3) + 1);                                                                                       \
         printf(msgFmt, bg, i, msg[5]);                                                                                 \
     }
 
 #define THINK()                                                                                                        \
     {                                                                                                                  \
         printf(msgFmt, bg, i, msg[8]);                                                                                 \
-        sleep((rand() % 10) + 1);                                                                                      \
+        sleep((rand() % 3) + 1);                                                                                       \
         printf(msgFmt, bg, i, msg[9]);                                                                                 \
     }
 
