@@ -4,6 +4,8 @@ int main()
 {
     int thinkerCnt = 5;
 
+    addUtensilsToTable(thinkerCnt);
+
     addThinkersToTable(thinkerCnt);
 
     waitForThinkersToLeave(thinkerCnt);
