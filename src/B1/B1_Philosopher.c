@@ -12,7 +12,7 @@ const char *colors[8] = {
     "\033[103m"  // 7 - Light Yellow
 };
 
-#define msgFmt(col, str, i) printf("\n\033[0m%sPhilosopher %d : %s%-30s \033[0m", bg, i, col, str);
+#define msgFmt(col, str, i) printf("\n\033[0m%sPhilosopher %d : %s[%-30s] \033[0m", bg, i, col, str);
 
 void *letThinkersThink(void *philosopherNo)
 {
@@ -22,41 +22,41 @@ void *letThinkersThink(void *philosopherNo)
 
     while (1)
     {
-        msgFmt(colors[5], "[WAITING TO GRAB UTENSILS]", i);
+        msgFmt(colors[5], "WAITING TO GRAB UTENSILS", i);
         wait_startGrabingUtensils();
 
-        msgFmt(colors[6], "[STARTED GRABBING UTENSILS]", i);
+        msgFmt(colors[6], "STARTED GRABBING UTENSILS", i);
 
         if (areForksAvailable(i, (i + 1) % id->count))
         {
             wait_pickUpFork(i);
-            msgFmt(colors[7], "[PICKED UP FORK]", i) printf(" : Fork I%d", i);
+            msgFmt(colors[7], "PICKED UP FORK", i) printf(" : Fork I%d", i);
 
             wait_pickUpFork((i + 1) % id->count);
-            msgFmt(colors[7], "[PICKED UP FORK]", i) printf(" : Fork I%d", (i + 1) % id->count);
+            msgFmt(colors[7], "PICKED UP FORK", i) printf(" : Fork I%d", (i + 1) % id->count);
 
-            msgFmt(colors[4], "[DONE GRABBING UTENSILS]", i);
+            msgFmt(colors[4], "DONE GRABBING UTENSILS", i);
             signal_doneGrabbingUtensils();
 
-            msgFmt(colors[4], "[EATING]", i);
+            msgFmt(colors[4], "EATING", i);
             sleep(1);
-            msgFmt(colors[3], "[DONE EATING]", i);
+            msgFmt(colors[3], "DONE EATING", i);
 
             signal_putDownFork((i + 1) % id->count);
-            msgFmt(colors[2], "[PUT DOWN FORK]", i) printf(" : Fork I%d", ((i + 1) % id->count));
+            msgFmt(colors[2], "PUT DOWN FORK", i) printf(" : Fork I%d", ((i + 1) % id->count));
 
             signal_putDownFork(i);
-            msgFmt(colors[2], "[PUT DOWN FORK]", i) printf(" : Fork I%d", i);
+            msgFmt(colors[2], "PUT DOWN FORK", i) printf(" : Fork I%d", i);
         }
         else
         {
-            msgFmt(colors[0], "[BOTH FORKS NOT AVAILABLE]", i);
+            msgFmt(colors[0], "BOTH FORKS NOT AVAILABLE", i);
             signal_doneGrabbingUtensils();
         }
 
-        msgFmt(colors[3], "[THINKING]", i);
+        msgFmt(colors[3], "THINKING", i);
         sleep(1);
-        msgFmt(colors[3], "[DONE THINKING]", i);
+        msgFmt(colors[3], "DONE THINKING", i);
     }
 
     return NULL;
