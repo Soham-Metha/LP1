@@ -39,7 +39,7 @@ void *letThinkersThink(void *philosopherNo)
             printf(msgFmt, bg, i, "  DONE GRABBING UTENSILS");
             signal_doneGrabbingUtensils();
 
-            printf(msgFmt, bg, i, "EATING");
+            printf(msgFmt, bg, i, "         EATING");
             sleep(1);
             printf(msgFmt, bg, i, "DONE EATING");
 
