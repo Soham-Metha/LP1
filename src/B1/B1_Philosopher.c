@@ -71,7 +71,7 @@ void *letThinkersThink(void *philosopher)
         signal_putDownFork(i);
         printf(msgFmt " Fork I%d", bg, i, msg[6], i);
 
-        printf(msgFmt, bg, i, msg[3]);
+        printf(msgFmt, bg, i, msg[12]);
         //----------------------------------------------------- CRITICAL SECTION END
         signal_doneGrabbingUtensils();
     }
