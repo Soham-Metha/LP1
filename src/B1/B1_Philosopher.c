@@ -43,37 +43,42 @@ void *letThinkersThink(void *philosopher)
             printf(msgFmt, bg, i, msg[7]);
             continue;
         }
+        { // ENTER CRITICAL SECTION
+            printf(msgFmt, bg, i, msg[0]);
+            wait_startGrabingUtensils();
+            printf(msgFmt, bg, i, msg[1]);
+        }
+        { // PICK UP 2 FORKS
+            wait_pickUpFork(i);
+            printf(msgFmt " Fork I%d", bg, i, msg[2], i);
 
-        printf(msgFmt, bg, i, msg[0]);
-        wait_startGrabingUtensils();
-        //----------------------------------------------------- CRITICAL SECTION START
-        printf(msgFmt, bg, i, msg[1]);
-        wait_pickUpFork(i);
-        printf(msgFmt " Fork I%d", bg, i, msg[2], i);
-
-        wait_pickUpFork((i + 1) % phil->count);
-        printf(msgFmt " Fork I%d", bg, i, msg[2], (i + 1) % phil->count);
-
-        printf(msgFmt, bg, i, msg[3]);
-        //----------------------------------------------------- CRITICAL SECTION END
-        signal_doneGrabbingUtensils();
+            wait_pickUpFork((i + 1) % phil->count);
+            printf(msgFmt " Fork I%d", bg, i, msg[2], (i + 1) % phil->count);
+        }
+        { // EXIT CRITICAL SECTION
+            printf(msgFmt, bg, i, msg[3]);
+            signal_doneGrabbingUtensils();
+        }
 
         EAT();
 
-        printf(msgFmt, bg, i, msg[10]);
-        wait_startGrabingUtensils();
-        //----------------------------------------------------- CRITICAL SECTION START
-        printf(msgFmt, bg, i, msg[11]);
+        { // RE-ENTER CRITICAL SECTION
+            printf(msgFmt, bg, i, msg[10]);
+            wait_startGrabingUtensils();
+            printf(msgFmt, bg, i, msg[11]);
+        }
+        { // PUT DOWN BOTH FORKS
+            signal_putDownFork((i + 1) % phil->count);
+            printf(msgFmt " Fork I%d", bg, i, msg[6], ((i + 1) % phil->count));
 
-        signal_putDownFork((i + 1) % phil->count);
-        printf(msgFmt " Fork I%d", bg, i, msg[6], ((i + 1) % phil->count));
-
-        signal_putDownFork(i);
-        printf(msgFmt " Fork I%d", bg, i, msg[6], i);
-
-        printf(msgFmt, bg, i, msg[12]);
-        //----------------------------------------------------- CRITICAL SECTION END
-        signal_doneGrabbingUtensils();
+            signal_putDownFork(i);
+            printf(msgFmt " Fork I%d", bg, i, msg[6], i);
+        }
+        { // EXIT CRITICAL SECTION
+            printf(msgFmt, bg, i, msg[12]);
+            //----------------------------------------------------- CRITICAL SECTION END
+            signal_doneGrabbingUtensils();
+        }
     }
 
     return NULL;
