@@ -1,4 +1,11 @@
+#pragma once
 #include <B2_Jobs.h>
+
+typedef struct JobQueue
+{
+    Job jobQueue[MAX_JOB_QUEUE_SIZE];
+    int len;
+} JobQueue;
 
 /*
  * Returns:

@@ -1,31 +1,21 @@
 #include <B2_Algos.h>
-#include <stdio.h>
 
 int main()
 {
-    Job jobQueueFCFS[] = {{.id = getNextJobId(), .priority = 4, .arrivalTime = 0, .burstTime = 100},
-                          {.id = getNextJobId(), .priority = 6, .arrivalTime = 0, .burstTime = 90},
-                          {.id = getNextJobId(), .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+    JobQueue testCase_1 = {{{.id = getNextJobId(), .priority = 4, .arrivalTime = 0, .burstTime = 100},
+                            {.id = getNextJobId(), .priority = 6, .arrivalTime = 0, .burstTime = 90},
+                            {.id = getNextJobId(), .priority = 1, .arrivalTime = 2, .burstTime = 5}},
+                           3};
 
-    Job jobQueuePRI[] = {{.id = getNextJobId(), .priority = 4, .arrivalTime = 0, .burstTime = 100},
-                         {.id = getNextJobId(), .priority = 6, .arrivalTime = 0, .burstTime = 90},
-                         {.id = getNextJobId(), .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+    initTable(testCase_1.jobQueue, testCase_1.len);
 
-    Job jobQueueSRTN[] = {{.id = getNextJobId(), .priority = 4, .arrivalTime = 0, .burstTime = 100},
-                          {.id = getNextJobId(), .priority = 6, .arrivalTime = 0, .burstTime = 90},
-                          {.id = getNextJobId(), .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+    B2_RunAlgos(testCase_1, NP_FCFS);
 
-    Job jobQueueRR[] = {{.id = getNextJobId(), .priority = 4, .arrivalTime = 0, .burstTime = 100},
-                        {.id = getNextJobId(), .priority = 6, .arrivalTime = 0, .burstTime = 90},
-                        {.id = getNextJobId(), .priority = 1, .arrivalTime = 2, .burstTime = 5}};
+    B2_RunAlgos(testCase_1, NP_PRI);
 
-    B2_RunAlgos(1, jobQueueFCFS, 3);
+    B2_RunAlgos(testCase_1, P_SRTN);
 
-    B2_RunAlgos(2, jobQueuePRI, 3);
-
-    B2_RunAlgos(3, jobQueueSRTN, 3);
-
-    B2_RunAlgos(4, jobQueueRR, 3);
+    B2_RunAlgos(testCase_1, P_RR);
 
     return 0;
 }

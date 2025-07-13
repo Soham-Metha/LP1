@@ -1,9 +1,9 @@
 #pragma once
 #include <B2_Jobs.h>
+#include <stdio.h>
 
 typedef struct TableElement
 {
-    int ID;
     int AT;
     int BT;
     int PRI;
@@ -18,5 +18,5 @@ void initTable(Job jobQueue[], int len);
 /* Update Table entry's CT,TAT,WT*/
 void UpdateTableElementCT(int index, int ct);
 
-/* Print entries from `start` to `end`*/
-void printTable(int start, int end);
+/* Print first 'n' entries from the table*/
+void printTable(int n);
