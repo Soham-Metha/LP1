@@ -21,7 +21,7 @@ void removeThinkersFromTable(int n)
     }
 }
 
-void wait_pickUpFork(int philosopherID)
+void wait_startGrabingUtensils(int philosopherID)
 {
     if (someonePickingUpForkFlag <= 0)
         printf("[WAITING TO PICK UP FORK] : %d\n", philosopherID);
@@ -32,7 +32,7 @@ void wait_pickUpFork(int philosopherID)
     printf("[PICKED UP FORK] : %d\n", philosopherID);
 }
 
-void signal_putDownFork(int philosopherID)
+void signal_doneGrabbingUtensils(int philosopherID)
 {
     someonePickingUpForkFlag += 1;
     printf("[PUT DOWN FORK] : %d\n", philosopherID);
