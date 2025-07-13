@@ -1,4 +1,4 @@
-#include <B1_Table.h>
+#include <B1_Philosopher.h>
 #include <stdlib.h>
 #include <unistd.h>
 
