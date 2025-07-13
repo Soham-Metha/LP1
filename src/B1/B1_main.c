@@ -6,5 +6,7 @@ int main()
 
     addThinkersToTable(thinkerCnt);
 
+    waitForThinkersToLeave(thinkerCnt);
+
     return 0;
 }
