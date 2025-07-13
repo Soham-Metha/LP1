@@ -22,14 +22,14 @@ void removeThinkersFromTable(int n)
     }
 }
 
-void wait_startGrabingUtensils(int philosopherID)
+void wait_startGrabingUtensils()
 {
     while (someonePickingUpForkFlag <= 0)
         ;
     someonePickingUpForkFlag -= 1;
 }
 
-void signal_doneGrabbingUtensils(int philosopherID)
+void signal_doneGrabbingUtensils()
 {
     someonePickingUpForkFlag += 1;
 }
