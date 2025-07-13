@@ -24,16 +24,16 @@ void removeThinkersFromTable(int n)
 void wait_startGrabingUtensils(int philosopherID)
 {
     if (someonePickingUpForkFlag <= 0)
-        printf("[WAITING TO PICK UP FORK] : %d\n", philosopherID);
+        printf("[WAITING TO GRAB UTENSILS] : %d\n", philosopherID);
 
     while (someonePickingUpForkFlag <= 0)
         ;
     someonePickingUpForkFlag -= 1;
-    printf("[PICKED UP FORK] : %d\n", philosopherID);
+    printf("[STARTED GRABBING UTENSILS] : %d\n", philosopherID);
 }
 
 void signal_doneGrabbingUtensils(int philosopherID)
 {
     someonePickingUpForkFlag += 1;
-    printf("[PUT DOWN FORK] : %d\n", philosopherID);
+    printf("[DONE GRABBING UTENSILS] : %d\n", philosopherID);
 }
