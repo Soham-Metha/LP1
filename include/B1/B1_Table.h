@@ -10,3 +10,7 @@ Fork forks[MAX_PHILOSOPHER_COUNT];
 void wait_pickUpFork(int philosopherID);
 
 void signal_putDownFork(int philosopherID);
+
+void addThinkersToTable(int n);
+
+void removeThinkersFromTable(int n);
