@@ -1,9 +1,9 @@
 #pragma once
 #include <B2_Jobs.h>
+#include <stdio.h>
 
 typedef struct TableElement
 {
-    int ID;
     int AT;
     int BT;
     int PRI;
@@ -12,8 +12,11 @@ typedef struct TableElement
     int WT;
 } TableElement;
 
+/* add values into table, index is job id*/
 void initTable(Job jobQueue[], int len);
 
+/* Update Table entry's CT,TAT,WT*/
 void UpdateTableElementCT(int index, int ct);
 
-void printTable(int start, int end);
+/* Print first 'n' entries from the table*/
+void printTable(int n);
