@@ -2,5 +2,9 @@
 
 int main()
 {
+    int thinkerCnt = 5;
+
+    addThinkersToTable(thinkerCnt);
+
     return 0;
 }
