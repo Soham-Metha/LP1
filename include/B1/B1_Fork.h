@@ -1,5 +1,7 @@
 #pragma once
 
+#define MAX_PHILOSOPHER_COUNT 8
+
 typedef char Fork;
 
 void wait_pickUpFork(int ForkNo);
