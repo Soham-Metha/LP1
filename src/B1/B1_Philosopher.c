@@ -22,40 +22,40 @@ void *letThinkersThink(void *philosopherNo)
 
     while (1)
     {
-        printf("%s%s\n\t[WAITING TO GRAB UTENSILS]  : P%d", bg, FG_WHITE, id->ID);
+        printf("%s\n%s\t[WAITING TO GRAB UTENSILS]  : P%d", bg, FG_WHITE, id->ID);
         wait_startGrabingUtensils();
-        printf("%s%s\n\t[STARTED GRABBING UTENSILS] : P%d", bg, FG_BLACK, id->ID);
+        printf("%s\n%s\t[STARTED GRABBING UTENSILS] : P%d", bg, FG_BLACK, id->ID);
 
         if (areForksAvailable(id->ID, (id->ID + 1) % id->count))
         {
             wait_pickUpFork(id->ID);
-            printf("%s%s\n\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, id->ID);
+            printf("%s\n%s\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, id->ID);
 
             wait_pickUpFork((id->ID + 1) % id->count);
-            printf("%s%s\n\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, (id->ID + 1) % id->count);
+            printf("%s\n%s\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, (id->ID + 1) % id->count);
 
-            printf("%s%s\n\t[DONE GRABBING UTENSILS]    : P%d", bg, FG_CYAN, id->ID);
+            printf("%s\n%s\t[DONE GRABBING UTENSILS]    : P%d", bg, FG_CYAN, id->ID);
             signal_doneGrabbingUtensils();
 
-            printf("%s%s\n\t[EATING]                    : P%d", bg, FG_BLACK, id->ID);
+            printf("%s\n%s\t[EATING]                    : P%d", bg, FG_BLACK, id->ID);
             sleep(1);
-            printf("%s%s\n\t[DONE EATING]               : P%d", bg, FG_CYAN, id->ID);
+            printf("%s\n%s\t[DONE EATING]               : P%d", bg, FG_CYAN, id->ID);
 
             signal_putDownFork((id->ID + 1) % id->count);
-            printf("%s%s\n\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, (id->ID + 1) % id->count);
+            printf("%s\n%s\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, (id->ID + 1) % id->count);
 
             signal_putDownFork(id->ID);
-            printf("%s%s\n\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, id->ID);
+            printf("%s\n%s\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, id->ID);
         }
         else
         {
-            printf("%s%s\n\t[BOTH FORKS NOT AVAILABLE]  : P%d", bg, FG_RED, id->ID);
+            printf("%s\n%s\t[BOTH FORKS NOT AVAILABLE]  : P%d", bg, FG_RED, id->ID);
             signal_doneGrabbingUtensils();
         }
 
-        printf("%s%s\n\t[THINKING]                  : P%d", bg, FG_WHITE, id->ID);
+        printf("%s\n%s\t[THINKING]                  : P%d", bg, FG_WHITE, id->ID);
         sleep(1);
-        printf("%s%s\n\t[DONE THINKING]             : P%d", bg, FG_CYAN, id->ID);
+        printf("%s\n%s\t[DONE THINKING]             : P%d", bg, FG_CYAN, id->ID);
     }
 
     return NULL;
