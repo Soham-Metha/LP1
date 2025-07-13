@@ -9,11 +9,11 @@ const char *philosopherColors[5] = {
     "\033[45m"  // Magenta BG
 };
 
-#define FG_WHITE "\033[97m"
-#define FG_BLACK "\033[30m"
-#define FG_CYAN "\033[96m"
-#define FG_RED "\033[91m"
-#define RESET_COLOR "\033[0m"
+#define FG_WHITE "\t\t"
+#define FG_BLACK "\t"
+#define FG_CYAN "\t\t\t"
+#define FG_RED "\t\t\t\t"
+#define RESET_COLOR "\t\t\t\t\t"
 
 void *letThinkersThink(void *philosopherNo)
 {
