@@ -1,13 +1,12 @@
 #pragma once
 #include <pthread.h>
 
-typedef struct PhilosopherIdentifier
+typedef struct Philosopher
 {
     int ID;
     int count;
-} PhilosopherIdentifier;
-
-typedef pthread_t Philosopher;
+    pthread_t thread;
+} Philosopher;
 
 void *letThinkersThink(void *);
 
