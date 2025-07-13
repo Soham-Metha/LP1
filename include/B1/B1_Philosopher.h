@@ -1,11 +1,11 @@
 #pragma once
 #include <pthread.h>
-typedef enum PhilosopherState
+
+typedef struct PhilosopherIdentifier
 {
-    STATE_HUNGRY,
-    STATE_THINKING,
-    STATE_EATING
-} PhilosopherState;
+    int ID;
+    int count;
+} PhilosopherIdentifier;
 
 typedef pthread_t Philosopher;
 
