@@ -22,10 +22,10 @@ void *letThinkersThink(void *philosopherNo)
 
     while (1)
     {
-        printf(msgFmt, bg, i, "WAITING TO GRAB UTENSILS");
+        printf(msgFmt, bg, i, "  WAITING TO GRAB UTENSILS");
         wait_startGrabingUtensils();
 
-        printf(msgFmt, bg, i, "STARTED GRABING UTENSILS");
+        printf(msgFmt, bg, i, "  STARTED GRABING UTENSILS");
 
         if (areForksAvailable(i, (i + 1) % id->count))
         {
