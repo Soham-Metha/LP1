@@ -34,6 +34,8 @@ void *letThinkersThink(void *philosopherNo)
         {
             printf("%s\n\t[BOTH FORKS NOT AVAILABLE]    : P%d", color, id->ID);
             signal_doneGrabbingUtensils();
+            printf("%s\n\t[THINKING]                    : P%d", color, id->ID);
+            sleep(1);
             continue;
         }
 
