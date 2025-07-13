@@ -11,7 +11,7 @@ const char *philosopherColors[5] = {
 #define RESET_COLOR "\033[0m"
 void *letThinkersThink(void *philosopherNo)
 {
-    PhilosopherIdentifier *id = (PhilosopherIdentifier *)philosopherNo;
+    Philosopher *id = (Philosopher *)philosopherNo;
     const char *color = philosopherColors[id->ID];
 
     while (1)
