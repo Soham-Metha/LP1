@@ -22,16 +22,16 @@ void wait_pickUpFork(int ForkNo)
     forks[ForkNo] -= 1;
 }
 
+void signal_putDownFork(int ForkNo)
+{
+    forks[ForkNo] += 1;
+}
+
 void wait_startGrabingUtensils()
 {
     while (someonePickingUpForkFlag <= 0)
         ;
     someonePickingUpForkFlag -= 1;
-}
-
-void signal_putDownFork(int ForkNo)
-{
-    forks[ForkNo] += 1;
 }
 
 void signal_doneGrabbingUtensils()
