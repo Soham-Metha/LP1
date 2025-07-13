@@ -12,7 +12,7 @@ const char *colors[8] = {
     "\033[103m"  // 7 - Light Yellow
 };
 
-#define msgFmt(col, str, i) printf("\n\033[0m%s%-40s : %sPhilosopher %d", col, str, bg, i);
+#define msgFmt(col, str, i) printf("\n\033[0m%s%-40s : %sPhilosopher %d\033[0m", col, str, bg, i);
 
 void *letThinkersThink(void *philosopherNo)
 {
