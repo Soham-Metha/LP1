@@ -30,10 +30,12 @@ void *letThinkersThink(void *philosopherNo)
         if (areForksAvailable(i, (i + 1) % id->count))
         {
             wait_pickUpFork(i);
-            msgFmt("PICKED UP FORK", i) printf(" Fork I%d", i);
+            printf("\n\033[0m%sPhilosopher %d : [ %-25s ] \033[0m Fork I%d", bg, i, "PICKED UP FORK", i);
 
             wait_pickUpFork((i + 1) % id->count);
-            msgFmt("PICKED UP FORK", i) printf(" Fork I%d", (i + 1) % id->count);
+
+            printf("\n\033[0m%sPhilosopher %d : [ %-25s ] \033[0m Fork I%d", bg, i, "PICKED UP FORK",
+                   (i + 1) % id->count);
 
             msgFmt("DONE GRABBING UTENSILS", i);
             signal_doneGrabbingUtensils();
@@ -43,10 +45,11 @@ void *letThinkersThink(void *philosopherNo)
             msgFmt("DONE EATING", i);
 
             signal_putDownFork((i + 1) % id->count);
-            msgFmt("PUT DOWN FORK", i) printf(" Fork I%d", ((i + 1) % id->count));
+            printf("\n\033[0m%sPhilosopher %d : [ %-25s ] \033[0m Fork I%d", bg, i, "PUT DOWN FORK",
+                   ((i + 1) % id->count));
 
             signal_putDownFork(i);
-            msgFmt("PUT DOWN FORK", i) printf(" Fork I%d", i);
+            printf("\n\033[0m%sPhilosopher %d : [ %-25s ] \033[0m Fork I%d", bg, i, "PUT DOWN FORK", i);
         }
         else
         {
