@@ -1,6 +1,6 @@
 BUILDS := ./builds
 CC	   := gcc
-CFLAGS := -Wall -Wextra -Werror -Wfatal-errors -Wswitch-enum -pedantic -std=c99
+CFLAGS := -Wall -Wextra -Werror -Wfatal-errors -Wswitch-enum -pedantic -O3 -std=c99
 LIBS   := $(addprefix -I, $(wildcard ./include/*/))
 
 define BUILD_RULE
