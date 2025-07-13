@@ -1,5 +1,4 @@
 #include <B1_Table.h>
-#include <stdio.h>
 
 char someonePickingUpForkFlag = 1;
 
