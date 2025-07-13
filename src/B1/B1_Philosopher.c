@@ -11,8 +11,12 @@ const char *colors[8] = {
     "\033[102m", // 6 - Bright Green
     "\033[103m"  // 7 - Light Yellow
 };
+const char *msg[10] = {" WAITING TO GRAB UTENSILS ", " STARTED GRABING UTENSILS ", "      PICKED UP FORK      ",
+                       "  DONE GRABBING UTENSILS  ", "          EATING          ", "        DONE EATING       ",
+                       "       PUT DOWN FORK      ", " BOTH FORKS NOT AVAILABLE ", "         THINKING         ",
+                       "       DONE THINKING      "};
 
-#define msgFmt "\n\033[0m%s \t Philosopher %d : [ %-26s ] \033[0m"
+#define msgFmt "\n\033[0m%s \t Philosopher %d : [ %s ] \033[0m"
 
 void *letThinkersThink(void *philosopherNo)
 {
@@ -22,42 +26,42 @@ void *letThinkersThink(void *philosopherNo)
 
     while (1)
     {
-        printf(msgFmt, bg, i, " WAITING TO GRAB UTENSILS");
+        printf(msgFmt, bg, i, msg[0]);
         wait_startGrabingUtensils();
 
-        printf(msgFmt, bg, i, " STARTED GRABING UTENSILS");
+        printf(msgFmt, bg, i, msg[1]);
 
         if (areForksAvailable(i, (i + 1) % id->count))
         {
             wait_pickUpFork(i);
-            printf(msgFmt " Fork I%d", bg, i, "      PICKED UP FORK", i);
+            printf(msgFmt " Fork I%d", bg, i, msg[2], i);
 
             wait_pickUpFork((i + 1) % id->count);
 
-            printf(msgFmt " Fork I%d", bg, i, "      PICKED UP FORK", (i + 1) % id->count);
+            printf(msgFmt " Fork I%d", bg, i, msg[2], (i + 1) % id->count);
 
-            printf(msgFmt, bg, i, "  DONE GRABBING UTENSILS");
+            printf(msgFmt, bg, i, msg[3]);
             signal_doneGrabbingUtensils();
 
-            printf(msgFmt, bg, i, "          EATING");
+            printf(msgFmt, bg, i, msg[4]);
             sleep(1);
-            printf(msgFmt, bg, i, "DONE EATING");
+            printf(msgFmt, bg, i, msg[5]);
 
             signal_putDownFork((i + 1) % id->count);
-            printf(msgFmt " Fork I%d", bg, i, "PUT DOWN FORK", ((i + 1) % id->count));
+            printf(msgFmt " Fork I%d", bg, i, msg[6], ((i + 1) % id->count));
 
             signal_putDownFork(i);
-            printf(msgFmt " Fork I%d", bg, i, "PUT DOWN FORK", i);
+            printf(msgFmt " Fork I%d", bg, i, msg[6], i);
         }
         else
         {
-            printf(msgFmt, bg, i, " BOTH FORKS NOT AVAILABLE");
+            printf(msgFmt, bg, i, msg[7]);
             signal_doneGrabbingUtensils();
         }
 
-        printf(msgFmt, bg, i, "THINKING");
+        printf(msgFmt, bg, i, msg[8]);
         sleep(1);
-        printf(msgFmt, bg, i, "DONE THINKING");
+        printf(msgFmt, bg, i, msg[9]);
     }
 
     return NULL;
