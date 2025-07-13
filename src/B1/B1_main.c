@@ -1,4 +1,3 @@
-#include <B1_Fork.h>
 #include <B1_Philosopher.h>
 
 Philosopher philosophers[MAX_PHILOSOPHER_COUNT];
