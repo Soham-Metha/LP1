@@ -51,7 +51,7 @@ void *letThinkersThink(void *philosopherNo)
         }
         else
         {
-            printf(msgFmt, bg, i, "BOTH FORKS NOT AVAILABLE");
+            printf(msgFmt, bg, i, " BOTH FORKS NOT AVAILABLE");
             signal_doneGrabbingUtensils();
         }
 
