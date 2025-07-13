@@ -21,3 +21,8 @@ void addUtensilsToTable(int n)
         forks[i] = 1;
     }
 }
+
+char areForksAvailable(int a, int b)
+{
+    return forks[a] && forks[b];
+}
