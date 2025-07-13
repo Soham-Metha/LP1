@@ -32,15 +32,17 @@ void *letThinkersThink(void *philosopherNo)
         }
         else
         {
-            printf("%s\n\t[BOTH FORKS NOT AVAILABLE]    : P%d", color, id->ID);
+            printf("%s\n\t[BOTH FORKS NOT AVAILABLE]  : P%d", color, id->ID);
             signal_doneGrabbingUtensils();
-            printf("%s\n\t[THINKING]                    : P%d", color, id->ID);
+            printf("%s\n\t[THINKING]                  : P%d", color, id->ID);
             sleep(1);
+            printf("%s\n\t[DONE THINKING]             : P%d", color, id->ID);
             continue;
         }
 
         printf("%s\n\t[EATING]                    : P%d", color, id->ID);
         sleep(1);
+        printf("%s\n\t[DONE EATING]               : P%d", color, id->ID);
 
         signal_putDownFork((id->ID + 1) % id->count);
         printf("%s\n\t[PUT DOWN FORK]             : P%d  :  I%d", color, id->ID, (id->ID + 1) % id->count);
