@@ -30,7 +30,7 @@ void waitForThinkersToLeave(int n)
 
 int main()
 {
-    int thinkerCnt = 2;
+    int thinkerCnt = 8;
 
     addUtensilsToTable(thinkerCnt);
 
