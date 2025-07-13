@@ -12,3 +12,5 @@ void signal_doneGrabbingUtensils();
 void addThinkersToTable(int n);
 
 void removeThinkersFromTable(int n);
+
+void waitForThinkersToLeave(int n);
