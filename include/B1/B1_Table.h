@@ -5,9 +5,9 @@
 
 #define MAX_PHILOSOPHER_COUNT 10
 
-void wait_startGrabingUtensils(int philosopherID);
+void wait_startGrabingUtensils();
 
-void signal_doneGrabbingUtensils(int philosopherID);
+void signal_doneGrabbingUtensils();
 
 void addThinkersToTable(int n);
 
