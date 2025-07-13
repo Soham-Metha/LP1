@@ -8,8 +8,8 @@ void addThinkersToTable(int n)
 {
     for (int i = 0; i < n; i++)
     {
-        PhilosopherIdentifier id = (PhilosopherIdentifier){.ID = i, .count = n};
-        pthread_create(&philosophers[i], NULL, letThinkersThink, &id);
+        philosophers[i] = (Philosopher){.ID = i, .count = n};
+        pthread_create(&philosophers[i].thread, NULL, letThinkersThink, &philosophers[i]);
     }
 }
 
@@ -17,7 +17,7 @@ void removeThinkersFromTable(int n)
 {
     for (int i = 0; i < n; i++)
     {
-        pthread_cancel(philosophers[i]);
+        pthread_cancel(philosophers[i].thread);
     }
 }
 
@@ -25,7 +25,7 @@ void waitForThinkersToLeave(int n)
 {
     for (int i = 0; i < n; i++)
     {
-        pthread_join(philosophers[i], NULL);
+        pthread_join(philosophers[i].thread, NULL);
     }
 }
 
