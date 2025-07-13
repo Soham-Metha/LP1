@@ -30,11 +30,11 @@ void *letThinkersThink(void *philosopherNo)
         if (areForksAvailable(i, (i + 1) % id->count))
         {
             wait_pickUpFork(i);
-            printf(msgFmt " Fork I%d", bg, i, "PICKED UP FORK", i);
+            printf(msgFmt " Fork I%d", bg, i, "      PICKED UP FORK", i);
 
             wait_pickUpFork((i + 1) % id->count);
 
-            printf(msgFmt " Fork I%d", bg, i, "PICKED UP FORK", (i + 1) % id->count);
+            printf(msgFmt " Fork I%d", bg, i, "      PICKED UP FORK", (i + 1) % id->count);
 
             printf(msgFmt, bg, i, "DONE GRABBING UTENSILS");
             signal_doneGrabbingUtensils();
