@@ -8,7 +8,6 @@ const char *philosopherColors[5] = {
     "\033[44m", // Blue
     "\033[45m"  // Magenta
 };
-#define RESET_COLOR "\033[0m"
 void *letThinkersThink(void *philosopherNo)
 {
     Philosopher *id = (Philosopher *)philosopherNo;
@@ -16,31 +15,35 @@ void *letThinkersThink(void *philosopherNo)
 
     while (1)
     {
-        printf("%s\n\t[WAITING TO GRAB UTENSILS]  : P%d%s", color, id->ID, RESET_COLOR);
+        printf("%s\n\t[WAITING TO GRAB UTENSILS]  : P%d", color, id->ID);
         wait_startGrabingUtensils();
-        printf("%s\n\t[STARTED GRABBING UTENSILS] : P%d%s", color, id->ID, RESET_COLOR);
+        printf("%s\n\t[STARTED GRABBING UTENSILS] : P%d", color, id->ID);
 
-        printf("%s\n\t[WAITING TO PICK UP FORK]   : P%d  :  I%d%s", color, id->ID, id->ID, RESET_COLOR);
-        wait_pickUpFork(id->ID);
-        printf("%s\n\t[PICKED UP FORK]            : P%d  :  I%d%s", color, id->ID, id->ID, RESET_COLOR);
+        if (areForksAvailable(id->ID, (id->ID + 1) % id->count))
+        {
+            wait_pickUpFork(id->ID);
+            printf("%s\n\t[PICKED UP FORK]            : P%d  :  I%d", color, id->ID, id->ID);
 
-        printf("%s\n\t[WAITING TO PICK UP FORK]   : P%d  :  I%d%s", color, id->ID, (id->ID + 1) % id->count,
-               RESET_COLOR);
-        wait_pickUpFork((id->ID + 1) % id->count);
-        printf("%s\n\t[PICKED UP FORK]            : P%d  :  I%d%s", color, id->ID, (id->ID + 1) % id->count,
-               RESET_COLOR);
+            wait_pickUpFork((id->ID + 1) % id->count);
+            printf("%s\n\t[PICKED UP FORK]            : P%d  :  I%d", color, id->ID, (id->ID + 1) % id->count);
 
-        signal_doneGrabbingUtensils();
-        printf("%s\n\t[DONE GRABBING UTENSILS]    : P%d%s", color, id->ID, RESET_COLOR);
+            printf("%s\n\t[DONE GRABBING UTENSILS]    : P%d", color, id->ID);
+            signal_doneGrabbingUtensils();
+        }
+        else
+        {
+            printf("%s\n\t[BOTH FORKS NOT AVAILABLE]    : P%d", color, id->ID);
+            signal_doneGrabbingUtensils();
+            continue;
+        }
 
-        printf("%s\n\t[EATING]                    : P%d%s", color, id->ID, RESET_COLOR);
+        printf("%s\n\t[EATING]                    : P%d", color, id->ID);
         sleep(1);
 
         signal_putDownFork((id->ID + 1) % id->count);
-        printf("%s\n\t[PUT DOWN FORK]             : P%d  :  I%d%s", color, id->ID, (id->ID + 1) % id->count,
-               RESET_COLOR);
+        printf("%s\n\t[PUT DOWN FORK]             : P%d  :  I%d", color, id->ID, (id->ID + 1) % id->count);
 
         signal_putDownFork(id->ID);
-        printf("%s\n\t[PUT DOWN FORK]             : P%d  :  I%d%s", color, id->ID, id->ID, RESET_COLOR);
+        printf("%s\n\t[PUT DOWN FORK]             : P%d  :  I%d", color, id->ID, id->ID);
     }
 }
