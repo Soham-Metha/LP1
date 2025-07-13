@@ -3,7 +3,7 @@
 #include <B1_Philosopher.h>
 #include <stdio.h>
 
-#define MAX_PHILOSOPHER_COUNT 10
+#define MAX_PHILOSOPHER_COUNT 8
 
 void addThinkersToTable(int n);
 
