@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 char someonePickingUpForkFlag = 1;
+
 Philosopher philosophers[MAX_PHILOSOPHER_COUNT];
 
 void addThinkersToTable(int n)
