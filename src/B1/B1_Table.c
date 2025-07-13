@@ -8,7 +8,8 @@ void addThinkersToTable(int n)
 {
     for (int i = 0; i < n; i++)
     {
-        pthread_create(&philosophers[i], NULL, toEatOrNotToEat, i);
+        PhilosopherIdentifier id = (PhilosopherIdentifier){.ID = i, .count = n};
+        pthread_create(&philosophers[i], NULL, letThinkersThink, &id);
     }
 }
 
@@ -23,17 +24,12 @@ void removeThinkersFromTable(int n)
 
 void wait_startGrabingUtensils(int philosopherID)
 {
-    if (someonePickingUpForkFlag <= 0)
-        printf("[WAITING TO GRAB UTENSILS] : %d\n", philosopherID);
-
     while (someonePickingUpForkFlag <= 0)
         ;
     someonePickingUpForkFlag -= 1;
-    printf("[STARTED GRABBING UTENSILS] : %d\n", philosopherID);
 }
 
 void signal_doneGrabbingUtensils(int philosopherID)
 {
     someonePickingUpForkFlag += 1;
-    printf("[DONE GRABBING UTENSILS] : %d\n", philosopherID);
 }
