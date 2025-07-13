@@ -18,6 +18,13 @@ void removeThinkersFromTable(int n)
     for (int i = 0; i < n; i++)
     {
         pthread_cancel(philosophers[i]);
+    }
+}
+
+void waitForThinkersToLeave(int n)
+{
+    for (int i = 0; i < n; i++)
+    {
         pthread_join(philosophers[i], NULL);
     }
 }
