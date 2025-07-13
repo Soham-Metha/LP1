@@ -35,6 +35,8 @@ int main()
 
     addThinkersToTable(thinkerCnt);
 
+    // removeThinkersFromTable(thinkerCnt);
+
     waitForThinkersToLeave(thinkerCnt);
 
     return 0;
