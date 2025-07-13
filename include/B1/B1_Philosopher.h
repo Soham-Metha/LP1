@@ -1,4 +1,5 @@
 #pragma once
+#include <B1_Fork.h>
 #include <pthread.h>
 
 typedef struct Philosopher
