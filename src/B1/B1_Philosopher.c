@@ -1,4 +1,5 @@
 #include <B1_Philosopher.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
