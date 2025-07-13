@@ -9,10 +9,11 @@ typedef enum PhilosopherState
 
 typedef pthread_t Philosopher;
 
-void *toEatOrNotToEat(void *);
+void *letThinkersThink(void *);
 
 /* name ideas:
  * existentialCrisis()
  * tableManners()
  * loopOfLife()
+ * toEatOrNotToEat()
  **/
