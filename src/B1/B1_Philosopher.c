@@ -11,10 +11,17 @@ const char *colors[8] = {
     "\033[102m", // 6 - Bright Green
     "\033[103m"  // 7 - Light Yellow
 };
-const char *msg[10] = {" WAITING TO GRAB UTENSILS ", " STARTED GRABING UTENSILS ", "      PICKED UP FORK      ",
-                       "  DONE GRABBING UTENSILS  ", "          EATING          ", "        DONE EATING       ",
-                       "       PUT DOWN FORK      ", " BOTH FORKS NOT AVAILABLE ", "         THINKING         ",
-                       "       DONE THINKING      "};
+const char *msg[10] = {" WAITING TO GRAB UTENSILS ",
+                       " STARTED GRABING UTENSILS ",
+                       "      PICKED UP FORK      ",
+                       "  DONE GRABBING UTENSILS  ",
+                       "          EATING          ",
+                       "        DONE EATING       ",
+                       "       PUT DOWN FORK      ",
+                       " BOTH FORKS NOT AVAILABLE ",
+                       "         THINKING         ",
+                       "       DONE THINKING      "
+};
 
 #define msgFmt "\n\033[0m%s \t Philosopher %d : [ %s ] \033[0m"
 
