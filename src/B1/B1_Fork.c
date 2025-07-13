@@ -13,3 +13,11 @@ void signal_putDownFork(int ForkNo)
 {
     forks[ForkNo] += 1;
 }
+
+void addUtensilsToTable(int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        forks[i] = 1;
+    }
+}
