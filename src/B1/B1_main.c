@@ -2,7 +2,7 @@
 
 int main()
 {
-    int thinkerCnt = 5;
+    int thinkerCnt = 1;
 
     addUtensilsToTable(thinkerCnt);
 
