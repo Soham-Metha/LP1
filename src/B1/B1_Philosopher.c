@@ -36,7 +36,7 @@ void *letThinkersThink(void *philosopherNo)
 
             printf(msgFmt " Fork I%d", bg, i, "      PICKED UP FORK", (i + 1) % id->count);
 
-            printf(msgFmt, bg, i, "   DONE GRABING UTENSILS");
+            printf(msgFmt, bg, i, "  DONE GRABING UTENSILS");
             signal_doneGrabbingUtensils();
 
             printf(msgFmt, bg, i, "EATING");
