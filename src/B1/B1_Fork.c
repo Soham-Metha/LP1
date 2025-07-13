@@ -1,5 +1,7 @@
 #include <B1_Table.h>
 
+char someonePickingUpForkFlag = 1;
+
 Fork forks[MAX_PHILOSOPHER_COUNT];
 
 void wait_pickUpFork(int ForkNo)
@@ -25,4 +27,16 @@ void addUtensilsToTable(int n)
 char areForksAvailable(int a, int b)
 {
     return forks[a] && forks[b];
+}
+
+void wait_startGrabingUtensils()
+{
+    while (someonePickingUpForkFlag <= 0)
+        ;
+    someonePickingUpForkFlag -= 1;
+}
+
+void signal_doneGrabbingUtensils()
+{
+    someonePickingUpForkFlag += 1;
 }
