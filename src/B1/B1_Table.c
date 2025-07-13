@@ -1,7 +1,5 @@
 #include <B1_Table.h>
 
-char someonePickingUpForkFlag = 1;
-
 Philosopher philosophers[MAX_PHILOSOPHER_COUNT];
 
 void addThinkersToTable(int n)
@@ -27,16 +25,4 @@ void waitForThinkersToLeave(int n)
     {
         pthread_join(philosophers[i].thread, NULL);
     }
-}
-
-void wait_startGrabingUtensils()
-{
-    while (someonePickingUpForkFlag <= 0)
-        ;
-    someonePickingUpForkFlag -= 1;
-}
-
-void signal_doneGrabbingUtensils()
-{
-    someonePickingUpForkFlag += 1;
 }
