@@ -1,61 +1,57 @@
 #include <B1_Table.h>
 #include <unistd.h>
 
-const char *philosopherColors[5] = {
-    "\033[41m", // Red BG
-    "\033[42m", // Green BG
-    "\033[43m", // Yellow BG
-    "\033[44m", // Blue BG
-    "\033[45m"  // Magenta BG
+const char *colors[5] = {
+    "\033[41m", // Red
+    "\033[42m", // Green
+    "\033[43m", // Yellow
+    "\033[44m", // Blue
+    "\033[45m"  // Magenta
 };
-
-#define FG_WHITE "\t\t"
-#define FG_BLACK "\t"
-#define FG_CYAN "\t\t\t"
-#define FG_RED "\t\t\t\t"
-#define RESET_COLOR "\t\t\t\t\t"
 
 void *letThinkersThink(void *philosopherNo)
 {
     Philosopher *id = (Philosopher *)philosopherNo;
-    const char *bg = philosopherColors[id->ID];
+    int i = id->ID;
+    const char *bg = colors[i];
 
     while (1)
     {
-        printf("%s\n%s\t[WAITING TO GRAB UTENSILS]  : P%d", bg, FG_WHITE, id->ID);
+        printf("%s[WAITING TO GRAB UTENSILS] %sP%d\n", colors[3], bg, i);
         wait_startGrabingUtensils();
-        printf("%s\n%s\t[STARTED GRABBING UTENSILS] : P%d", bg, FG_BLACK, id->ID);
 
-        if (areForksAvailable(id->ID, (id->ID + 1) % id->count))
+        printf("%s[STARTED GRABBING UTENSILS] %sP%d\n", colors[1], bg, i);
+
+        if (areForksAvailable(i, (i + 1) % id->count))
         {
-            wait_pickUpFork(id->ID);
-            printf("%s\n%s\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, id->ID);
+            wait_pickUpFork(i);
+            printf("%s[PICKED UP FORK] %sP%d : Fork I%d\n", colors[1], bg, i, i);
 
-            wait_pickUpFork((id->ID + 1) % id->count);
-            printf("%s\n%s\t[PICKED UP FORK]            : P%d  :  I%d", bg, FG_BLACK, id->ID, (id->ID + 1) % id->count);
+            wait_pickUpFork((i + 1) % id->count);
+            printf("%s[PICKED UP FORK] %sP%d : Fork I%d\n", colors[1], bg, i, (i + 1) % id->count);
 
-            printf("%s\n%s\t[DONE GRABBING UTENSILS]    : P%d", bg, FG_CYAN, id->ID);
+            printf("%s[DONE GRABBING UTENSILS] %sP%d\n", colors[4], bg, i);
             signal_doneGrabbingUtensils();
 
-            printf("%s\n%s\t[EATING]                    : P%d", bg, FG_BLACK, id->ID);
+            printf("%s[EATING] %sP%d\n", colors[4], bg, i);
             sleep(1);
-            printf("%s\n%s\t[DONE EATING]               : P%d", bg, FG_CYAN, id->ID);
+            printf("%s[DONE EATING] %sP%d\n", colors[3], bg, i);
 
-            signal_putDownFork((id->ID + 1) % id->count);
-            printf("%s\n%s\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, (id->ID + 1) % id->count);
+            signal_putDownFork((i + 1) % id->count);
+            printf("%s[PUT DOWN FORK] %sP%d : Fork I%d\n", colors[2], bg, i, (i + 1) % id->count);
 
-            signal_putDownFork(id->ID);
-            printf("%s\n%s\t[PUT DOWN FORK]             : P%d  :  I%d", bg, FG_CYAN, id->ID, id->ID);
+            signal_putDownFork(i);
+            printf("%s[PUT DOWN FORK] %sP%d : Fork I%d\n", colors[2], bg, i, i);
         }
         else
         {
-            printf("%s\n%s\t[BOTH FORKS NOT AVAILABLE]  : P%d", bg, FG_RED, id->ID);
+            printf("%s[BOTH FORKS NOT AVAILABLE] %sP%d\n", colors[2], bg, i);
             signal_doneGrabbingUtensils();
         }
 
-        printf("%s\n%s\t[THINKING]                  : P%d", bg, FG_WHITE, id->ID);
+        printf("%s[THINKING] %sP%d\n", colors[3], bg, i);
         sleep(1);
-        printf("%s\n%s\t[DONE THINKING]             : P%d", bg, FG_CYAN, id->ID);
+        printf("%s[DONE THINKING] %sP%d\n", colors[3], bg, i);
     }
 
     return NULL;
