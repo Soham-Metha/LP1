@@ -28,58 +28,62 @@ const char *msg[13] = {" WAITING TO GRAB UTENSILS ", " STARTED GRABING UTENSILS 
         printf(msgFmt, bg, i, msg[9]);                                                                                 \
     }
 
+inline char loopOfLife(Philosopher *phil, int i, const char *bg)
+{
+    THINK();
+
+    if (!areForksAvailable(i, (i + 1) % phil->count))
+    {
+        printf(msgFmt, bg, i, msg[7]);
+        return 1;
+    }
+    { // ENTER CRITICAL SECTION
+        printf(msgFmt, bg, i, msg[0]);
+        wait_startGrabingUtensils();
+        printf(msgFmt, bg, i, msg[1]);
+    }
+    { // PICK UP 2 FORKS
+        wait_pickUpFork(i);
+        printf(msgFmt " Fork I%d", bg, i, msg[2], i);
+
+        wait_pickUpFork((i + 1) % phil->count);
+        printf(msgFmt " Fork I%d", bg, i, msg[2], (i + 1) % phil->count);
+    }
+    { // EXIT CRITICAL SECTION
+        printf(msgFmt, bg, i, msg[3]);
+        signal_doneGrabbingUtensils();
+    }
+
+    EAT();
+
+    { // RE-ENTER CRITICAL SECTION
+        printf(msgFmt, bg, i, msg[10]);
+        wait_startGrabingUtensils();
+        printf(msgFmt, bg, i, msg[11]);
+    }
+    { // PUT DOWN BOTH FORKS
+        signal_putDownFork((i + 1) % phil->count);
+        printf(msgFmt " Fork I%d", bg, i, msg[6], ((i + 1) % phil->count));
+
+        signal_putDownFork(i);
+        printf(msgFmt " Fork I%d", bg, i, msg[6], i);
+    }
+    { // EXIT CRITICAL SECTION
+        printf(msgFmt, bg, i, msg[12]);
+        //----------------------------------------------------- CRITICAL SECTION END
+        signal_doneGrabbingUtensils();
+    }
+    return 1;
+}
+
 void *letThinkersThink(void *philosopher)
 {
     Philosopher *phil = (Philosopher *)philosopher;
     int i = phil->ID;
     const char *bg = colors[i % 8];
 
-    while (1)
-    {
-        THINK();
-
-        if (!areForksAvailable(i, (i + 1) % phil->count))
-        {
-            printf(msgFmt, bg, i, msg[7]);
-            continue;
-        }
-        { // ENTER CRITICAL SECTION
-            printf(msgFmt, bg, i, msg[0]);
-            wait_startGrabingUtensils();
-            printf(msgFmt, bg, i, msg[1]);
-        }
-        { // PICK UP 2 FORKS
-            wait_pickUpFork(i);
-            printf(msgFmt " Fork I%d", bg, i, msg[2], i);
-
-            wait_pickUpFork((i + 1) % phil->count);
-            printf(msgFmt " Fork I%d", bg, i, msg[2], (i + 1) % phil->count);
-        }
-        { // EXIT CRITICAL SECTION
-            printf(msgFmt, bg, i, msg[3]);
-            signal_doneGrabbingUtensils();
-        }
-
-        EAT();
-
-        { // RE-ENTER CRITICAL SECTION
-            printf(msgFmt, bg, i, msg[10]);
-            wait_startGrabingUtensils();
-            printf(msgFmt, bg, i, msg[11]);
-        }
-        { // PUT DOWN BOTH FORKS
-            signal_putDownFork((i + 1) % phil->count);
-            printf(msgFmt " Fork I%d", bg, i, msg[6], ((i + 1) % phil->count));
-
-            signal_putDownFork(i);
-            printf(msgFmt " Fork I%d", bg, i, msg[6], i);
-        }
-        { // EXIT CRITICAL SECTION
-            printf(msgFmt, bg, i, msg[12]);
-            //----------------------------------------------------- CRITICAL SECTION END
-            signal_doneGrabbingUtensils();
-        }
-    }
+    while (loopOfLife(phil, i, bg))
+        ;
 
     return NULL;
 }
