@@ -19,3 +19,5 @@ int getNextBatchArrivalTime(Job jobQueue[], int rear, int timestamp);
  * if all jobs have BT of `0`, returns NULL
  **/
 Job *getNextShortestJobInQueue(Job jobQueue[], int rear, int timestamp);
+
+Job *getNextHighPriorityJobInQueue(Job jobQueue[], int rear, int timestamp);
