@@ -4,7 +4,7 @@ CFLAGS := -Wall -Wextra -Werror -Wfatal-errors -Wswitch-enum -pedantic -O3 -std=
 LIBS   := $(addprefix -I, $(wildcard ./include/*/))
 
 define BUILD_RULE
-$1: $2
+$1: $2  | $(BUILDS)
 	@$(CC) $$^ $(CFLAGS) $(LIBS) -o $$@
 	@printf "\e[32m		[ BUILD COMPLETED ]\t: [ $$@ ] \e[0m\n\n"
 endef
@@ -22,3 +22,6 @@ B1: clean $(B1)
 clean:
 	@rm -rf $(BUILDS)/*.o
 	@printf "\e[31m		[ CLEAN COMPLETED ]\t: [ $(BUILDS)/*.o ] \e[0m\n\n"
+
+$(BUILDS):
+	@mkdir -p $@
