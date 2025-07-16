@@ -4,6 +4,14 @@ Code is written in C, organized across multiple files.
 
 # Currently done:
 
+## B1
+
+![IMAGE](extras/B1_Dining_Philosophers.png)
+
+### LOC
+
+![IMAGE](extras/B1_LOC_STATS.png)
+
 ## B2
 
 ![IMAGE](extras/B2_CPU_Scheduling.png)

@@ -18,11 +18,14 @@ void B2_FCFS(Job jobQueue[], int len)
     }
 }
 
+int completedCnt = 0;
 void B2_RR(Job jobQueue[], int len, int timeSlice)
 {
-    int completedCnt = 0;
     for (int i = 0; i < len; i++)
     {
+        if (jobQueue[i].burstTime <= 0)
+            continue;
+
         if (__timestamp < jobQueue[i].arrivalTime) // process have not yet arrived
         {
             if (completedCnt == i) // all prior jobs have completed execution

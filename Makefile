@@ -17,6 +17,7 @@ B2: clean $(B2)
 B1:= $(BUILDS)/B1.o
 $(eval $(call BUILD_RULE, $(B1),  $(wildcard src/B1/*.c)))
 B1: clean $(B1)
+	@$(B1)
 
 clean:
 	@rm -rf $(BUILDS)/*.o
