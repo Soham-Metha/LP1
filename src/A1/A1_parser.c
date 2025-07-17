@@ -2,6 +2,19 @@
 #include <A1_parser.h>
 #include <A1_tokens.h>
 
+typedef struct SymTabEntry
+{
+    String name;
+    int addr;
+} SymTabEntry;
+
+typedef struct SymTab
+{
+    SymTabEntry table[256];
+    unsigned char tableSize;
+} SymTab;
+SymTab table;
+
 void printMemoInFormat(MemonicType memo)
 {
     printf("\n (");
@@ -20,6 +33,20 @@ void processLabel(String *line)
     // printf("\n LABEL '%.*s'", tok.value.length, tok.value.data);
 }
 
+OperandType searchOrInsertInSymTab(String symbol)
+{
+    for (OperandType i = 0; i < table.tableSize; i++)
+    {
+        if (table.table[i].name.length == symbol.length &&
+            strncmp(table.table[i].name.data, symbol.data, symbol.length))
+        {
+            return i;
+        }
+    }
+    table.table[table.tableSize++] = (SymTabEntry){.name = symbol};
+    return table.tableSize - 1;
+}
+
 void processInstruction(String *line)
 {
     trim(line);
@@ -30,18 +57,22 @@ void processInstruction(String *line)
     char oprCnt = getOperandCountFromId(memoID);
     while (oprCnt > 0)
     {
-        oprCnt -= 1;
+        OperandType id;
         Token opr = getNextToken(line, LINE_INST);
         if (opr.type == TOKEN_CONST)
         {
             printf(" (C, %.*s)", opr.value.length, opr.value.data);
         }
-        else if (opr.type == TOKEN_NAME)
+        else if (getOperandIdFromName(opr.value, id))
         {
-            OperandType id;
-            getOperandIdFromName(opr.value, id);
-            // printf(" ID (%d)", id);
+            printf(" (%d)", id);
         }
+        else
+        {
+            id = searchOrInsertInSymTab(opr.value);
+            printf(" (S, %d)", id);
+        }
+        oprCnt -= 1;
     }
 }
 
