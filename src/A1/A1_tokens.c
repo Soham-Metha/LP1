@@ -57,13 +57,12 @@ Token getNextToken(String *line, LineType type)
             val.length += 1;
         }
         return (Token){.type = TOKEN_CONST, .value = val};
-    default:
-        while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
-        {
-            line->data += 1;
-            line->length -= 1;
-            val.length += 1;
-        }
-        return (Token){.type = TOKEN_NAME, .value = val};
     }
+    while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
+    {
+        line->data += 1;
+        line->length -= 1;
+        val.length += 1;
+    }
+    return (Token){.type = TOKEN_NAME, .value = val};
 }
