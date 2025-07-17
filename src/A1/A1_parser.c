@@ -20,7 +20,6 @@ void processLine()
         return;
     if (line[0] != ' ' && line[0] != '\t')
     {
-        printf("\nLABEL PROCESSING, '%c'\n\n", line[0]);
         processLabel();
     }
     processInstruction();
