@@ -38,3 +38,5 @@ typedef struct MemonicLUT
     const char *name;
     char operandCnt;
 } MemonicLUT;
+
+MemonicType getMemonicIdFromName(const char *name);
