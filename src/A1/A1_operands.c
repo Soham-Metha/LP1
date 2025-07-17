@@ -17,23 +17,23 @@ static OperandLUT regLUT[REGISTER_CNT] = {
     [REG_DREG] = {.value = REG_DREG, .name = "DREG", .nameLen = 4},
 };
 
-char getOperandIdFromName(String name, OperandType *out)
+char getOperandIdFromName(String name, Operand *out)
 {
-    for (OperandType i = 0; i < REGISTER_CNT; i++)
+    for (unsigned char i = 0; i < REGISTER_CNT; i++)
     {
         if (regLUT[i].nameLen == name.length && strncmp(regLUT[i].name, name.data, name.length) == 0)
         {
             if (out)
-                *out = i;
+                *out = (Operand){.type = OPERAND_REG, .as_regID = i};
             return 1;
         }
     }
-    for (OperandType i = 0; i < COND_CNT; i++)
+    for (unsigned char i = 0; i < COND_CNT; i++)
     {
         if (condLUT[i].nameLen == name.length && strncmp(condLUT[i].name, name.data, name.length) == 0)
         {
             if (out)
-                *out = i;
+                *out = (Operand){.type = OPERAND_COND, .as_condID = i};
             return 1;
         }
     }
