@@ -16,7 +16,7 @@ void printMemoInFormat(MemonicType memo)
 void processLabel(String *line)
 {
     Token tok = getNextToken(line, LINE_INST);
-    printf("\n LABEL '%.*s'", tok.value.length, tok.value.data);
+    // printf("\n LABEL '%.*s'", tok.value.length, tok.value.data);
 }
 
 void processInstruction(String *line)
