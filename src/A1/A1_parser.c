@@ -35,6 +35,23 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         break;
     }
     printf("%d)", inst.memonic & 0x0F);
+
+    unsigned char oprCnt = getOperandCountFromId(inst.memonic);
+    if (oprCnt > 0)
+    {
+        if (inst.operand1.type == OPERAND_COND)
+        {
+            printf(" (%d)", inst.operand1.as_condID);
+        }
+        else if (inst.operand1.type == OPERAND_CONST)
+        {
+            printf(" (C, %.*s)", inst.operand1.as_const.length, inst.operand1.as_const.data);
+        }
+        else
+        {
+            printf(" (S, %d)", inst.operand1.as_symbolID);
+        }
+    }
 }
 
 void processLabel(String *line)
@@ -57,17 +74,11 @@ void processInstruction(String *line)
         Token oprTok = getNextToken(line, LINE_INST);
         if (oprTok.type == TOKEN_CONST)
         {
-            // printf(" (C, %.*s)", oprTok.value.length, oprTok.value.data);
             opr[i] = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
         }
-        else if (getOperandIdFromName(oprTok.value, &opr[i]))
-        {
-            // printf(" (%d)", opr.as_condID);
-        }
-        else
+        else if (!getOperandIdFromName(oprTok.value, &opr[i]))
         {
             opr[i] = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
-            // printf(" (S, %d)", id);
         }
     }
 
