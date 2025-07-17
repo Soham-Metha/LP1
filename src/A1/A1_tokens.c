@@ -28,7 +28,6 @@ Token getNextToken(String *line, LineType type)
             line->data += 1;
             line->length -= 1;
         }
-        trim(line);
         return (Token){.type = TOKEN_LABEL, .value = val};
     }
     switch (line->data[0])
@@ -47,7 +46,6 @@ Token getNextToken(String *line, LineType type)
             line->length -= 1;
             val.length += 1;
         }
-        trim(line);
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
     case '0' ... '9':
@@ -58,7 +56,6 @@ Token getNextToken(String *line, LineType type)
             line->length -= 1;
             val.length += 1;
         }
-        trim(line);
         return (Token){.type = TOKEN_CONST, .value = val};
     }
     while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
@@ -67,6 +64,5 @@ Token getNextToken(String *line, LineType type)
         line->length -= 1;
         val.length += 1;
     }
-    trim(line);
     return (Token){.type = TOKEN_NAME, .value = val};
 }
