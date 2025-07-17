@@ -34,6 +34,11 @@ void processInstruction(String *line)
         {
             printf(" (C, %.*s)", opr.value.length, opr.value.data);
         }
+        else if (opr.type == TOKEN_NAME)
+        {
+            OperandType id = getOperandIdFromName(opr.value);
+            printf(" (%d)", id);
+        }
     }
 }
 
