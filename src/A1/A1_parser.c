@@ -30,6 +30,7 @@ void processInstruction(String *line)
     while (oprCnt--)
     {
         Token opr = getNextToken(line, LINE_INST);
+        printf(" %d", oprCnt);
         if (opr.type == TOKEN_CONST)
         {
             printf(" (C, %.*s)", opr.value.length, opr.value.data);
