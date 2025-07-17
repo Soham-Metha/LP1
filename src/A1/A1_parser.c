@@ -31,7 +31,6 @@ void processLine()
         printf("\nLABEL PROCESSING, '%c'\n\n", line[0]);
         processLabel();
     }
-    printf("\nINST PROCESSING\n\n");
     processInstruction();
 }
 
