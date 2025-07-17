@@ -21,6 +21,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     case INST_IS_DIV:
     case INST_IS_BC:
         printf("IS, ");
+        IP += 1;
         break;
     case INST_AD_END:
     case INST_AD_EQU:
@@ -32,6 +33,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     case INST_DL_DC:
     case INST_DL_DS:
         printf("DL, ");
+        IP += 1;
         break;
     }
     printf("%d)", inst.memonic & 0x0F);
