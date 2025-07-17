@@ -29,7 +29,8 @@ typedef enum Memonic
     INST_AD_EQU,
     INST_AD_LTORG,
     INST_DL_DC = INST_TYPE_DL << 4 + 1,
-    INST_DL_DS
+    INST_DL_DS,
+    INSTRUCTION_CNT
 } Memonic;
 
 typedef enum Register
@@ -37,7 +38,8 @@ typedef enum Register
     REG_AREG = 1,
     REG_BREG,
     REG_CREG,
-    REG_DREG
+    REG_DREG,
+    REGISTER_CNT
 } Register;
 
 typedef enum Conditions
@@ -47,7 +49,8 @@ typedef enum Conditions
     COND_EQ,
     COND_GT,
     COND_GE,
-    COND_ANY
+    COND_ANY,
+    COND_CNT
 } Conditions;
 
 typedef struct Instruction
@@ -67,5 +70,6 @@ typedef struct MemonicLUT
 typedef struct OperandLUT
 {
     OperandType value;
-    const char *name;
+    const char *regName;
+    const char *condName;
 } OperandLUT;
