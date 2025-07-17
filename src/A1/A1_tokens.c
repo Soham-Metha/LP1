@@ -15,7 +15,7 @@ void trim(String *str)
     }
 }
 
-String getNextToken(String *line)
+String getNextToken(String *line, TokenType type)
 {
     String token = (String){.data = line->data, .length = 0};
     while (line->data[0] != ' ' && line->data[0] != '\t')
