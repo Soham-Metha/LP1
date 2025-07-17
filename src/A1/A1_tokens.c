@@ -18,6 +18,7 @@ void trim(String *str)
 
 Token getNextToken(String *line, LineType type)
 {
+    trim(line);
     String val = (String){.data = line->data, .length = 0};
     if (type == LINE_LABEL)
     {
