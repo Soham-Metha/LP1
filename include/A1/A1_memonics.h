@@ -36,6 +36,7 @@ typedef struct MemonicLUT
 {
     MemonicType memo;
     const char *name;
+    int nameLen;
     char operandCnt;
 } MemonicLUT;
 
