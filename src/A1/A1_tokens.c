@@ -30,10 +30,10 @@ Token getNextToken(String *line, LineType type)
         trim(line);
         return (Token){.type = TOKEN_LABEL, .value = label};
     }
+    String val = (String){.data = line->data, .length = line->length};
     switch (line->data[0])
     {
     case '\'':
-        String val = (String){.data = line->data, .length = line->length};
         line->data += 1;
         line->length -= 1;
         while (line->data[0] != '\'')
@@ -49,7 +49,6 @@ Token getNextToken(String *line, LineType type)
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
     case '0' ... '9':
-        String val = (String){.data = line->data, .length = line->length};
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
 
