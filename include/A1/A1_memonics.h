@@ -5,7 +5,7 @@ typedef unsigned char MemonicType;
 
 typedef enum InstType
 {
-    INST_TYPE_IS,
+    INST_TYPE_IS = 1,
     INST_TYPE_AD,
     INST_TYPE_DL
 } InstType;
