@@ -30,7 +30,7 @@ Token getNextToken(String *line, LineType type)
         trim(line);
         return (Token){.type = TOKEN_LABEL, .value = label};
     }
-    String val = (String){.data = line->data, .length = line->length};
+    String val = (String){.data = line->data, .length = 0};
     switch (line->data[0])
     {
     case '\'':
