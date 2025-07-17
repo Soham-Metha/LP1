@@ -60,7 +60,6 @@ Token getNextToken(String *line, LineType type)
     default:
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
-
             line->data++;
             line->length--;
             val.length++;
