@@ -24,5 +24,6 @@ String getNextToken(String *line, TokenType type)
         line->data += 1;
         line->length -= 1;
     }
+    trim(line);
     return token;
 }
