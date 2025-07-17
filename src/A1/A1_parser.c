@@ -1,35 +1,45 @@
 #include <A1_parser.h>
 #include <string.h>
-
-char line[MAX_LINE_WIDTH];
-char *delimiters = " \t";
-void processLabel()
+typedef struct String
 {
-    strtok(line, delimiters);
-    printf("\nLABEL %s\n", line);
-}
+    const char *data;
+    int length;
+} String;
 
-void processInstruction()
+void processLabel(String line)
 {
-    char *inst = strtok(NULL,delimiters);
-    printf("\nINST %s\n", inst);
-}
-
-void processLine()
-{
-    if (line[0] == '\n')
-        return;
-    if (line[0] != ' ' && line[0] != '\t')
+    String label = (String){.data = line.data, .length = 0};
+    while (line.data[0] != ' ' && line.data[0] != '\t')
     {
-        processLabel();
+        label.length += 1;
+        line.data += 1;
+        line.length -= 1;
     }
-    processInstruction();
+    printf("\n LABEL %.*s\n", label.length, line.data);
+}
+
+void processInstruction(String line)
+{
+    printf("%.*s", line.length, line.data);
+}
+
+void processLine(String line)
+{
+    if (line.data[0] != ' ' && line.data[0] != '\t')
+    {
+        processLabel(line);
+    }
+    processInstruction(line);
 }
 
 void processFile()
 {
+    char line[MAX_LINE_WIDTH];
     while (fgets(line, MAX_LINE_WIDTH, stdin) != NULL)
     {
-        processLine();
+        String lineView = (String){.data = line, .length = strlen(line)};
+        if (*lineView.data == '\n')
+            continue;
+        processLine(lineView);
     }
 }
