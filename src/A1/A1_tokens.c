@@ -8,8 +8,8 @@ void trim(String *str)
         str->length -= 1;
     }
 
-    while (str->data[str->length - 1] == ' ' || str->data[str->length - 1] == '\t' ||
-           str->data[str->length - 1] == '\n')
+    while (str->data[str->length] == ' ' || str->data[str->length] == '\t' ||
+           str->data[str->length] == '\n')
     {
         str->length -= 1;
     }
