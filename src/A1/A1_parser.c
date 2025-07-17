@@ -6,26 +6,26 @@ typedef struct String
     int length;
 } String;
 
-void processLabel(String line)
+void processLabel(String *line)
 {
-    String label = (String){.data = line.data, .length = 0};
-    while (line.data[0] != ' ' && line.data[0] != '\t')
+    String label = (String){.data = (*line).data, .length = 0};
+    while ((*line).data[0] != ' ' && (*line).data[0] != '\t')
     {
         label.length += 1;
-        line.data += 1;
-        line.length -= 1;
+        (*line).data += 1;
+        (*line).length -= 1;
     }
     printf("\n LABEL '%.*s'\n", label.length, label.data);
 }
 
-void processInstruction(String line)
+void processInstruction(String *line)
 {
-    printf("\n'%.*s'", line.length, line.data);
+    printf("\n'%.*s'", line->length, line->data);
 }
 
-void processLine(String line)
+void processLine(String *line)
 {
-    if (line.data[0] != ' ' && line.data[0] != '\t')
+    if (line->data[0] != ' ' && line->data[0] != '\t')
     {
         processLabel(line);
     }
@@ -40,6 +40,6 @@ void processFile()
         String lineView = (String){.data = line, .length = strlen(line)-1};
         if (*lineView.data == '\n')
             continue;
-        processLine(lineView);
+        processLine(&lineView);
     }
 }
