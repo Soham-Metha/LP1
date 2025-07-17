@@ -5,9 +5,17 @@ typedef struct String
     const char *data;
     int length;
 } String;
-void ltrim(String *str)
+
+void trim(String *str)
 {
     while (str->data[0] == ' ' || str->data[0] == '\t')
+    {
+        str->data += 1;
+        str->length -= 1;
+    }
+
+    while (str->data[str->length - 1] == ' ' || str->data[str->length - 1] == '\t' ||
+           str->data[str->length - 1] == '\n')
     {
         str->data += 1;
         str->length -= 1;
@@ -33,7 +41,7 @@ void processLine(String *line)
         String label = getNextToken(line);
         printf("\n LABEL '%.*s'", label.length, label.data);
     }
-    ltrim(line);
+    trim(line);
     printf("\n'%.*s'", line->length, line->data);
 }
 
