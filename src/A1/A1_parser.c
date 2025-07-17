@@ -52,6 +52,21 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
             printf(" (S, %d)", inst.operand1.as_symbolID);
         }
     }
+    if (oprCnt > 1)
+    {
+        if (inst.operand2.type == OPERAND_COND)
+        {
+            printf(" (%d)", inst.operand2.as_condID);
+        }
+        else if (inst.operand2.type == OPERAND_CONST)
+        {
+            printf(" (C, %.*s)", inst.operand2.as_const.length, inst.operand2.as_const.data);
+        }
+        else
+        {
+            printf(" (S, %d)", inst.operand2.as_symbolID);
+        }
+    }
 }
 
 void processLabel(String *line)
