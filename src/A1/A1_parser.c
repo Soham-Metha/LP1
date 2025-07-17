@@ -31,7 +31,7 @@ void processLine()
 
 void processFile()
 {
-    while (fgets(*line, MAX_LINE_WIDTH, stdin) != NULL)
+    while (fgets((*line), MAX_LINE_WIDTH, stdin) != NULL)
     {
         processLine();
     }
