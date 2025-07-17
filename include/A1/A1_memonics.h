@@ -1,4 +1,5 @@
 #pragma once
+#include <A1_tokens.h>
 
 typedef unsigned char MemonicType;
 
@@ -40,4 +41,4 @@ typedef struct MemonicLUT
     char operandCnt;
 } MemonicLUT;
 
-MemonicType getMemonicIdFromName(const char *name);
+MemonicType getMemonicIdFromName(String name);

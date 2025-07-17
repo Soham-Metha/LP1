@@ -1,3 +1,4 @@
+#include <A1_instructions.h>
 #include <A1_parser.h>
 #include <A1_tokens.h>
 
@@ -5,11 +6,12 @@ void processLine(String *line)
 {
     if (line->data[0] != ' ' && line->data[0] != '\t')
     {
-        String label = getNextToken(line);
+        String label = getNextToken(line, TOKEN_LABEL);
         printf("\n LABEL '%.*s'", label.length, label.data);
     }
     trim(line);
-    printf("\n'%.*s'", line->length, line->data);
+    MemonicType memo = getMemonicIdFromName(getNextToken(line, TOKEN_LABEL));
+    printf("\n > %d <->'%.*s'", memo, line->length, line->data);
 }
 
 void processFile()
