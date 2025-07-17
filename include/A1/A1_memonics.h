@@ -1,6 +1,6 @@
 #pragma once
 
-typedef char MemonicType;
+typedef unsigned char MemonicType;
 
 typedef enum InstType
 {
