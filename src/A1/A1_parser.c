@@ -2,18 +2,10 @@
 #include <string.h>
 
 char line[MAX_LINE_WIDTH];
-
+char *delimiters = " \t";
 void processLabel()
 {
-    char *labelNm = line;
-    char *LabelPos = &line[0];
-    while (*LabelPos != ' ' || *LabelPos != '\t' || *LabelPos != '\n')
-    {
-        printf("%c", LabelPos[0]);
-        LabelPos++;
-    }
-    LabelPos[0] = '\0';
-    LabelPos++;
+    char *labelNm = strtok(line, delimiters);
     printf("\nLABEL %s\n\n", labelNm);
 }
 
