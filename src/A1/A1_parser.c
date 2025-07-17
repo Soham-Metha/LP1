@@ -13,6 +13,7 @@ void printMemoInFormat(MemonicType memo)
         printf("IS, ");
     printf("%d)", memo & 0x0F);
 }
+
 void processLabel(String *line)
 {
     Token tok = getNextToken(line, LINE_INST);
@@ -37,7 +38,8 @@ void processInstruction(String *line)
         }
         else if (opr.type == TOKEN_NAME)
         {
-            OperandType id = getOperandIdFromName(opr.value);
+            OperandType id;
+            getOperandIdFromName(opr.value, id);
             // printf(" ID (%d)", id);
         }
     }
