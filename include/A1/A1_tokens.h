@@ -27,4 +27,4 @@ typedef struct String
 
 void trim(String *str);
 
-String getNextToken(String *line, TokenType type);
+String getNextToken(String *line, LineType type);
