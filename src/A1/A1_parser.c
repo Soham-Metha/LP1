@@ -6,7 +6,7 @@ int IP = 0;
 
 void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
 {
-    printf("\n (");
+    printf("\n%-4d\t(", IP);
     switch (inst.memonic)
     {
     case INST_IS_MOVER:
@@ -43,30 +43,30 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     {
         if (inst.operand1.type == OPERAND_COND)
         {
-            printf(" (%d)", inst.operand1.as_condID);
+            printf("\t(%d)", inst.operand1.as_condID);
         }
         else if (inst.operand1.type == OPERAND_CONST)
         {
-            printf(" (C, %.*s)", inst.operand1.as_const.length, inst.operand1.as_const.data);
+            printf("\t(C, %.*s)", inst.operand1.as_const.length, inst.operand1.as_const.data);
         }
         else
         {
-            printf(" (S, %d)", inst.operand1.as_symbolID);
+            printf("\t(S, %d)", inst.operand1.as_symbolID);
         }
     }
     if (oprCnt > 1)
     {
         if (inst.operand2.type == OPERAND_COND)
         {
-            printf(" (%d)", inst.operand2.as_condID);
+            printf("\t(%d)", inst.operand2.as_condID);
         }
         else if (inst.operand2.type == OPERAND_CONST)
         {
-            printf(" (C, %.*s)", inst.operand2.as_const.length, inst.operand2.as_const.data);
+            printf("\t(C, %.*s)", inst.operand2.as_const.length, inst.operand2.as_const.data);
         }
         else
         {
-            printf(" (S, %d)", inst.operand2.as_symbolID);
+            printf("\t(S, %d)", inst.operand2.as_symbolID);
         }
     }
 }
