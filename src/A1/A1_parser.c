@@ -24,6 +24,8 @@ void processInstruction()
 
 void processLine()
 {
+    if (line[0] == '\n')
+        return;
     if (line[0] != ' ' || line[0] != '\t')
     {
         processLabel();
