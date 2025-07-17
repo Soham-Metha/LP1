@@ -5,8 +5,8 @@ char line[MAX_LINE_WIDTH];
 char *delimiters = " \t";
 void processLabel()
 {
-    char *labelNm = strtok(line, delimiters);
-    printf("\nLABEL %s\n", labelNm);
+    strtok(line, delimiters);
+    printf("\nLABEL %s\n", line);
 }
 
 void processInstruction()
