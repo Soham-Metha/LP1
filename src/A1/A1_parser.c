@@ -27,7 +27,7 @@ void processInstruction(String *line)
     printMemoInFormat(memoID);
 
     char oprCnt = getOperandCountFromId(memoID);
-    while (oprCnt--)
+    while (--oprCnt)
     {
         Token opr = getNextToken(line, LINE_INST);
         printf(" %d", oprCnt);
