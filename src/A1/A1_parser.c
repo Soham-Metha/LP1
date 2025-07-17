@@ -23,7 +23,18 @@ void processInstruction(String *line)
 {
     trim(line);
     Token tok = getNextToken(line, LINE_INST);
-    printMemoInFormat(getMemonicIdFromName(tok.value));
+    MemonicType memoID = getMemonicIdFromName(tok.value);
+    char oprCnt = getOperandCountFromId(memoID);
+    while (oprCnt--)
+    {
+        Token opr = getNextToken(line, LINE_INST);
+        if (opr.type == TOKEN_CONST)
+        {
+            printf(" (C, %.*s)", opr.value.length, opr.value.data);
+        }
+    }
+
+    printMemoInFormat(memoID);
 }
 
 void processLine(String *line)
