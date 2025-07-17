@@ -18,19 +18,18 @@ void trim(String *str)
 
 Token getNextToken(String *line, LineType type)
 {
+    String val = (String){.data = line->data, .length = 0};
     if (type == LINE_LABEL)
     {
-        String label = (String){.data = line->data, .length = 0};
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
-            label.length += 1;
+            val.length += 1;
             line->data += 1;
             line->length -= 1;
         }
         trim(line);
-        return (Token){.type = TOKEN_LABEL, .value = label};
+        return (Token){.type = TOKEN_LABEL, .value = val};
     }
-    String val = (String){.data = line->data, .length = 0};
     switch (line->data[0])
     {
     case '\'':
