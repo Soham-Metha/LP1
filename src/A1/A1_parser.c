@@ -2,6 +2,18 @@
 #include <A1_parser.h>
 #include <A1_tokens.h>
 
+void printMemoInFormat(MemonicType memo)
+{
+    printf("\n (");
+    if (memo >= INST_TYPE_DL << 4)
+        printf("DL, ");
+    else if (memo >= INST_TYPE_AD << 4)
+        printf("AD, ");
+    else
+        printf("IS, ");
+    printf("%d)", memo & 0x0F);
+}
+
 void processLine(String *line)
 {
     if (line->data[0] != ' ' && line->data[0] != '\t')
