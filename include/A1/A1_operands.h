@@ -26,6 +26,7 @@ typedef struct OperandLUT
 {
     OperandType value;
     const char *name;
+    int nameLen;
 } OperandLUT;
 
 MemonicType getOperandIdFromName(const char *name);
