@@ -18,22 +18,27 @@ static OperandLUT regLUT[REGISTER_CNT] = {
     [REG_DREG] = {.value = REG_DREG, .name = "DREG", .nameLen = 4},
 };
 
-OperandType getOperandIdFromName(String name)
+char getOperandIdFromName(String name, OperandType *out)
 {
     for (OperandType i = 0; i < REGISTER_CNT; i++)
     {
         if (regLUT[i].nameLen == name.length && strncmp(regLUT[i].name, name.data, name.length) == 0)
         {
-            return i;
+            if (out)
+                *out = i;
+            return 1;
         }
     }
     for (OperandType i = 0; i < COND_CNT; i++)
     {
         if (condLUT[i].nameLen == name.length && strncmp(condLUT[i].name, name.data, name.length) == 0)
         {
-            return i;
+            if (out)
+                *out = i;
+            return 1;
         }
     }
-    printf("UNKNOWN OPERAND DETECTED : '%.*s'", name.length, name.data);
+    // printf("UNKNOWN OPERAND DETECTED : '%.*s'", name.length, name.data);
     // exit(1);
+    return 0;
 }
