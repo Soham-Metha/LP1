@@ -28,8 +28,10 @@ void processLine()
         return;
     if (line[0] != ' ' || line[0] != '\t')
     {
+        printf("\nLABEL PROCESSING\n\n");
         processLabel();
     }
+    printf("\nINST PROCESSING\n\n");
     processInstruction();
 }
 
