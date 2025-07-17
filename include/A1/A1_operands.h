@@ -43,7 +43,7 @@ typedef enum Conditions
 
 typedef struct OperandLUT
 {
-    OperandType value;
+    unsigned char value;
     const char *name;
     int nameLen;
 } OperandLUT;
