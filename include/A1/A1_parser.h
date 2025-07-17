@@ -4,3 +4,7 @@
 void processLabel(String *line);
 
 void processInstruction(String *line);
+
+void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst);
+
+int getIP();
