@@ -1,7 +1,6 @@
 #pragma once
 
 typedef char MemonicType;
-typedef char OperandType;
 
 typedef enum InstType
 {
@@ -33,42 +32,9 @@ typedef enum Memonic
     INSTRUCTION_CNT
 } Memonic;
 
-typedef enum Register
-{
-    REG_AREG = 1,
-    REG_BREG,
-    REG_CREG,
-    REG_DREG,
-    REGISTER_CNT
-} Register;
-
-typedef enum Conditions
-{
-    COND_LT = 1,
-    CONT_LE,
-    COND_EQ,
-    COND_GT,
-    COND_GE,
-    COND_ANY,
-    COND_CNT
-} Conditions;
-
-typedef struct Instruction
-{
-    MemonicType memonic;
-    OperandType operand1;
-    OperandType operand2;
-} Instruction;
-
 typedef struct MemonicLUT
 {
     MemonicType memo;
     const char *name;
     char operandCnt;
 } MemonicLUT;
-
-typedef struct OperandLUT
-{
-    OperandType value;
-    const char *name;
-} OperandLUT;
