@@ -15,15 +15,47 @@ void trim(String *str)
     }
 }
 
-String getNextToken(String *line, TokenType type)
+Token getNextToken(String *line, LineType type)
 {
-    String token = (String){.data = line->data, .length = 0};
-    while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
+    if (type == LINE_LABEL)
     {
-        token.length += 1;
+        String label = (String){.data = line->data, .length = 0};
+        while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
+        {
+            label.length += 1;
+            line->data += 1;
+            line->length -= 1;
+        }
+        trim(line);
+        return (Token){.type = TOKEN_LABEL, .value = label};
+    }
+    switch (line->data[0])
+    {
+    case '\'':
+        String val = (String){.data = line->data, .length = line->length};
         line->data += 1;
         line->length -= 1;
+        while (line->data[0] != '\'')
+        {
+            if (line->length == 0)
+            {
+                printf("\nCOULDNT FIND A CLOSING ' \' '");
+            }
+            line->data++;
+            line->length--;
+            val.length++;
+        }
+        return (Token){.type = TOKEN_CONST, .value = val};
+    case '-':
+    case '0' ... '9':
+        String val = (String){.data = line->data, .length = line->length};
+        while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
+        {
+
+            line->data++;
+            line->length--;
+            val.length++;
+        }
+        return (Token){.type = TOKEN_CONST, .value = val};
     }
-    trim(line);
-    return token;
 }
