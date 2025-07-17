@@ -22,3 +22,5 @@ typedef struct SymTab
 } SymTab;
 
 OperandType searchOrInsertInSymTab(String symbol);
+
+void UpdateAddressInSymTab(String symbol, int address);
