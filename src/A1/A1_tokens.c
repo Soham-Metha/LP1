@@ -50,7 +50,8 @@ Token getNextToken(String *line, LineType type)
         trim(line);
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
-    case '0' ... '9':
+    case '0':
+    case '9':
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
 
