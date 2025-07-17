@@ -2,12 +2,7 @@
 
 int main()
 {
-    char line[MAX_LINE_WIDTH];
-
-    while (fgets(line, MAX_LINE_WIDTH, stdin) != NULL)
-    {
-        printf("%s", line);
-    }
+    processFile();
     printf("\n");
     return 0;
 }
