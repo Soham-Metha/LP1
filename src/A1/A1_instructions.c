@@ -1,4 +1,4 @@
-#include <A1_memonics.h>
+#include <A1_instructions.h>
 
 static MemonicLUT memonicLUT[INSTRUCTION_CNT] = {
     [INST_AD_ORIGIN] = {.memo = INST_AD_ORIGIN, .name = "ORIGIN", .operandCnt = 0},
