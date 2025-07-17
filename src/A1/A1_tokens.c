@@ -1,4 +1,5 @@
 #include <A1_tokens.h>
+#include <stdio.h>
 
 void trim(String *str)
 {
