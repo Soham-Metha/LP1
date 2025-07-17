@@ -1,28 +1,29 @@
 #include <A1_parser.h>
 #include <string.h>
 
-char *line[MAX_LINE_WIDTH];
+char line[MAX_LINE_WIDTH];
 
 void processLabel()
 {
-    // char *labelNm = *line;
-    while (*line[0] != ' ' || *line[0] != '\t')
+    char *labelNm = line;
+    char **LabelPos = &line;
+    while (*LabelPos[0] != ' ' || *LabelPos[0] != '\t')
     {
-        (*line)++;
+        LabelPos++;
     }
-    (*line)[0] = '\0';
-    (*line)++;
-    // printf("\nLABEL %s\n\n", labelNm);
+    LabelPos[0] = '\0';
+    LabelPos++;
+    printf("\nLABEL %s\n\n", labelNm);
 }
 
 void processInstruction()
 {
-    printf("%s", *line);
+    printf("%s", line);
 }
 
 void processLine()
 {
-    if (*line[0] != ' ' || *line[0] != '\t')
+    if (line[0] != ' ' || line[0] != '\t')
     {
         processLabel();
     }
@@ -31,7 +32,7 @@ void processLine()
 
 void processFile()
 {
-    while (fgets((*line), MAX_LINE_WIDTH, stdin) != NULL)
+    while (fgets(line, MAX_LINE_WIDTH, stdin) != NULL)
     {
         processLine();
     }
