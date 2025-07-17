@@ -15,7 +15,7 @@ AGAIN   MULT    BREG TERM
         STOP
 N       DS      1
 RESULT  DS      1
-ONE     DC      ‘1’
+ONE     DC      '1'
 TERM    DS      1
-TWO     DC      ‘2’
+TWO     DC      '2'
         END
