@@ -11,11 +11,8 @@ typedef enum LineType
 typedef enum TokenType
 {
     TOKEN_LABEL,
-    TOKEN_MEMONIC,
     TOKEN_CONST,
-    TOKEN_SYMBOL,
-    TOKEN_REGISTER,
-    TOKEN_COMPARISON,
+    TOKEN_NAME,
     TOKEN_CNT
 } TokenType;
 
