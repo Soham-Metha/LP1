@@ -15,7 +15,7 @@ void processLabel(String line)
         line.data += 1;
         line.length -= 1;
     }
-    printf("\n LABEL '%.*s'\n", label.length, line.data);
+    printf("\n LABEL '%.*s'\n", label.length, label.data);
 }
 
 void processInstruction(String line)
