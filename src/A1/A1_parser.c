@@ -5,15 +5,14 @@ char *line[MAX_LINE_WIDTH];
 
 void processLabel()
 {
-    printf("%s", *line);
-    char *labelNm = *line;
+    // char *labelNm = *line;
     while (*line[0] != ' ' || *line[0] != '\t')
     {
         (*line)++;
     }
     (*line)[0] = '\0';
     (*line)++;
-    printf("\nLABEL %s\n\n", labelNm);
+    // printf("\nLABEL %s\n\n", labelNm);
 }
 
 void processInstruction()
