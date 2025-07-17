@@ -3,10 +3,24 @@
 #include <A1_tokens.h>
 
 int IP = 0;
+
+void __END(Instruction inst);
+void __EQU(Instruction inst);
+void __START(Instruction inst)
+{
+    if (inst.operand1.as_const.length)
+    {
+        sscanf(inst.operand1.as_const.data, "%d", &IP);
+    }
+}
+void __LTORG(Instruction inst);
+void __ORIGIN(Instruction inst);
+
 int getIP()
 {
     return IP;
 }
+
 void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
 {
     printf("\n%-6d\t(", IP);
