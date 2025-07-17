@@ -11,7 +11,8 @@ void processLabel()
 
 void processInstruction()
 {
-    printf("%s", line);
+    char *inst = strtok(NULL,delimiters);
+    printf("\nINST %s\n", inst);
 }
 
 void processLine()
