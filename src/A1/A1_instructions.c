@@ -1,4 +1,7 @@
 #include <A1_instructions.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 static MemonicLUT memonicLUT[INSTRUCTION_CNT] = {
     [INST_AD_ORIGIN] = {.memo = INST_AD_ORIGIN, .name = "ORIGIN", .operandCnt = 0},
@@ -27,9 +30,42 @@ static OperandLUT condLUT[COND_CNT] = {
     [COND_GE] = {.value = COND_GE, .name = "GE"}, [COND_ANY] = {.value = COND_ANY, .name = "ANY"},
 };
 
-static OperandLUT condLUT[REGISTER_CNT] = {
+static OperandLUT regLUT[REGISTER_CNT] = {
     [REG_AREG] = {.value = REG_AREG, .name = "AREG"},
     [REG_BREG] = {.value = REG_BREG, .name = "BREG"},
     [REG_CREG] = {.value = REG_CREG, .name = "CREG"},
     [REG_DREG] = {.value = REG_DREG, .name = "DREG"},
 };
+
+MemonicType getMemonicIdFromName(const char *name)
+{
+    for (MemonicType i = 0; i < INSTRUCTION_CNT; i++)
+    {
+        if (strcmp(memonicLUT[i].name, name) == 0)
+        {
+            return i;
+        }
+    }
+    printf("UNKNOWN MEMONIC DETECTED : %s\n\n", name);
+    exit(1);
+}
+
+MemonicType getOperandIdFromName(const char *name)
+{
+    for (MemonicType i = 0; i < REGISTER_CNT; i++)
+    {
+        if (strcmp(regLUT[i].name, name) == 0)
+        {
+            return i;
+        }
+    }
+    for (MemonicType i = 0; i < COND_CNT; i++)
+    {
+        if (strcmp(condLUT[i].name, name) == 0)
+        {
+            return i;
+        }
+    }
+    printf("UNKNOWN OPERAND DETECTED : %s\n\n", name);
+    exit(1);
+}
