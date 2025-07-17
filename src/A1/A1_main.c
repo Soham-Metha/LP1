@@ -9,6 +9,6 @@ int main()
     {
         printf("%s", line);
     }
-
+    printf("\n");
     return 0;
 }
