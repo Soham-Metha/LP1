@@ -63,7 +63,7 @@ void processInstruction(String *line)
         {
             printf(" (C, %.*s)", opr.value.length, opr.value.data);
         }
-        else if (getOperandIdFromName(opr.value, id))
+        else if (getOperandIdFromName(opr.value, &id))
         {
             printf(" (%d)", id);
         }
