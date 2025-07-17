@@ -42,9 +42,9 @@ Token getNextToken(String *line, LineType type)
             {
                 printf("\nCOULDNT FIND A CLOSING ' \' '");
             }
-            line->data++;
-            line->length--;
-            val.length++;
+            line->data += 1;
+            line->length -= 1;
+            val.length += 1;
         }
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
@@ -52,17 +52,17 @@ Token getNextToken(String *line, LineType type)
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
 
-            line->data++;
-            line->length--;
-            val.length++;
+            line->data += 1;
+            line->length -= 1;
+            val.length += 1;
         }
         return (Token){.type = TOKEN_CONST, .value = val};
     default:
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
-            line->data++;
-            line->length--;
-            val.length++;
+            line->data += 1;
+            line->length -= 1;
+            val.length += 1;
         }
         return (Token){.type = TOKEN_NAME, .value = val};
     }
