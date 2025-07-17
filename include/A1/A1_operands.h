@@ -30,4 +30,4 @@ typedef struct OperandLUT
     int nameLen;
 } OperandLUT;
 
-MemonicType getOperandIdFromName(String name);
+OperandType getOperandIdFromName(String name);
