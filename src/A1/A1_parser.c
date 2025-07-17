@@ -13,17 +13,25 @@ void printMemoInFormat(MemonicType memo)
         printf("IS, ");
     printf("%d)", memo & 0x0F);
 }
+void processLabel(String *line)
+{
+    String label = getNextToken(line, TOKEN_LABEL);
+    printf("\n LABEL '%.*s'", label.length, label.data);
+}
+
+void processInstruction(String *line)
+{
+    trim(line);
+    printMemoInFormat(getMemonicIdFromName(getNextToken(line, LINE_LABEL)));
+}
 
 void processLine(String *line)
 {
     if (line->data[0] != ' ' && line->data[0] != '\t')
     {
-        String label = getNextToken(line, TOKEN_LABEL);
-        printf("\n LABEL '%.*s'", label.length, label.data);
+        processLabel(line);
     }
-    trim(line);
-    MemonicType memo = getMemonicIdFromName(getNextToken(line, TOKEN_LABEL));
-    printMemoInFormat(memo);
+    processInstruction(line);
     printf(" '%.*s'", line->length, line->data);
 }
 
