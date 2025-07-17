@@ -1,13 +1,13 @@
 #pragma once
 #include <string.h>
 
-typedef enum Token
+typedef enum TokenType
 {
     TOKEN_LABEL,
     TOKEN_MEMONIC,
     TOKEN_OPERAND,
     TOKEN_CNT
-} Token;
+} TokenType;
 
 typedef struct String
 {
