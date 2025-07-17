@@ -8,7 +8,7 @@ void processLabel()
     char *labelNm = line;
     char *LabelPos = &line[0];
     printf("\nLABEL %s\n\n", labelNm);
-    while (*LabelPos != ' ' || *LabelPos != '\t')
+    while (*LabelPos != ' ' || *LabelPos != '\t' || *LabelPos != '\n')
     {
         printf("%c", LabelPos[0]);
         LabelPos++;
