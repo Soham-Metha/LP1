@@ -6,7 +6,7 @@ char *delimiters = " \t";
 void processLabel()
 {
     char *labelNm = strtok(line, delimiters);
-    printf("\nLABEL %s\n\n", labelNm);
+    printf("\nLABEL %s\n", labelNm);
 }
 
 void processInstruction()
