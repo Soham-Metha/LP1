@@ -10,6 +10,7 @@ void processLabel()
     while (LabelPos[0] != ' ' || LabelPos[0] != '\t')
     {
         LabelPos++;
+        printf("%c", LabelPos[0]);
     }
     LabelPos[0] = '\0';
     LabelPos++;
