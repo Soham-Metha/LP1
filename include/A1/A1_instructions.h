@@ -8,3 +8,16 @@ typedef struct Instruction
     OperandType operand1;
     OperandType operand2;
 } Instruction;
+
+
+typedef struct SymTabEntry
+{
+    String name;
+    int addr;
+} SymTabEntry;
+
+typedef struct SymTab
+{
+    SymTabEntry table[256];
+    unsigned char tableSize;
+} SymTab;
