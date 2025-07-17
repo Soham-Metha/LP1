@@ -18,9 +18,10 @@ void trim(String *str)
 
 Token getNextToken(String *line, LineType type)
 {
-    String val = (String){.data = line->data, .length = 0};
+    String val;
     if (type == LINE_LABEL)
     {
+        val = (String){.data = line->data, .length = 0};
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
             val.length += 1;
@@ -35,7 +36,7 @@ Token getNextToken(String *line, LineType type)
     case '\'':
         line->data += 1;
         line->length -= 1;
-        val.data += 1;
+        val = (String){.data = line->data, .length = 0};
         while (line->data[0] != '\'')
         {
             if (line->length == 0)
@@ -50,6 +51,7 @@ Token getNextToken(String *line, LineType type)
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
     case '0' ... '9':
+        val = (String){.data = line->data, .length = 0};
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
 
