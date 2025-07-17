@@ -15,7 +15,7 @@ void processLabel()
     printf("\nLABEL %s\n\n", labelNm);
 }
 
-void processInstrcution()
+void processInstruction()
 {
     printf("%s", *line);
 }
