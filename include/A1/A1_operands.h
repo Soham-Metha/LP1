@@ -30,4 +30,4 @@ typedef struct OperandLUT
     int nameLen;
 } OperandLUT;
 
-OperandType getOperandIdFromName(String name);
+char getOperandIdFromName(String name, OperandType *out);
