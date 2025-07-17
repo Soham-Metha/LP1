@@ -29,6 +29,7 @@ void processInstruction(String *line)
     char oprCnt = getOperandCountFromId(memoID);
     while (oprCnt > 0)
     {
+        oprCnt -= 1;
         Token opr = getNextToken(line, LINE_INST);
         if (opr.type == TOKEN_CONST)
         {
@@ -39,7 +40,6 @@ void processInstruction(String *line)
             OperandType id = getOperandIdFromName(opr.value);
             printf(" ID (%d)", id);
         }
-        oprCnt -= 1;
     }
 }
 
