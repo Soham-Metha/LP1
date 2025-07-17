@@ -36,7 +36,7 @@ MemonicType getMemonicIdFromName(String name)
     exit(1);
 }
 
-int getOperandCountFromId(MemonicType id)
+char getOperandCountFromId(MemonicType id)
 {
     return memonicLUT[id].operandCnt;
 }
