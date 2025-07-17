@@ -12,6 +12,7 @@ void processLabel()
     }
     (*line)[0] = '\0';
     (*line)++;
+    printf("\nLABEL %s\n\n", *labelNm);
 }
 
 void processInstrcution()
