@@ -21,6 +21,7 @@ void processFile()
         String lineView = (String){.data = line, .length = strlen(line)};
         if (*lineView.data == '\n')
             continue;
+        trim(&lineView);
         processLine(&lineView);
     }
 }
