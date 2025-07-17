@@ -25,6 +25,12 @@ typedef struct String
     int length;
 } String;
 
+typedef struct Token
+{
+    TokenType type;
+    String value;
+} Token;
+
 void trim(String *str);
 
 String getNextToken(String *line, LineType type);
