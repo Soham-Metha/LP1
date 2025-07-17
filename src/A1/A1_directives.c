@@ -8,6 +8,7 @@ void __END(Instruction inst);
 void __EQU(Instruction inst);
 void __START(Instruction inst)
 {
+    printf("%.*s", inst.operand1.as_const.length, inst.operand1.as_const.data);
     if (inst.operand1.as_const.length)
     {
         sscanf(inst.operand1.as_const.data, "%d", &IP);
