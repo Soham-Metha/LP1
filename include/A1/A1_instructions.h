@@ -5,8 +5,7 @@
 typedef struct Instruction
 {
     MemonicType memonic;
-    OperandType operand1;
-    OperandType operand2;
+    Operand operand[2];
 } Instruction;
 
 typedef struct SymTabEntry
