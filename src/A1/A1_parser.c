@@ -24,6 +24,8 @@ void processInstruction(String *line)
     trim(line);
     Token tok = getNextToken(line, LINE_INST);
     MemonicType memoID = getMemonicIdFromName(tok.value);
+    printMemoInFormat(memoID);
+
     char oprCnt = getOperandCountFromId(memoID);
     while (oprCnt--)
     {
@@ -33,8 +35,6 @@ void processInstruction(String *line)
             printf(" (C, %.*s)", opr.value.length, opr.value.data);
         }
     }
-
-    printMemoInFormat(memoID);
 }
 
 void processLine(String *line)
