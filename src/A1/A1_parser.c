@@ -37,7 +37,7 @@ void processFile()
     char line[MAX_LINE_WIDTH];
     while (fgets(line, MAX_LINE_WIDTH, stdin) != NULL)
     {
-        String lineView = (String){.data = line, .length = strlen(line)};
+        String lineView = (String){.data = line, .length = strlen(line)-1};
         if (*lineView.data == '\n')
             continue;
         processLine(lineView);
