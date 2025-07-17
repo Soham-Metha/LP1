@@ -30,6 +30,7 @@ Token getNextToken(String *line, LineType type)
         }
         return (Token){.type = TOKEN_LABEL, .value = val};
     }
+    printf("l %c ", line->data[0]);
     switch (line->data[0])
     {
     case '\'':
