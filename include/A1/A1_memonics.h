@@ -70,6 +70,5 @@ typedef struct MemonicLUT
 typedef struct OperandLUT
 {
     OperandType value;
-    const char *regName;
-    const char *condName;
+    const char *name;
 } OperandLUT;
