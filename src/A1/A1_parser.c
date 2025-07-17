@@ -5,36 +5,36 @@ typedef struct String
     const char *data;
     int length;
 } String;
-
-void processLabel(String *line)
+void ltrim(String *str)
 {
-    String label = (String){.data = line->data, .length = 0};
-    while (line->data[0] != ' ' && line->data[0] != '\t')
+    while (str->data[0] == ' ' || str->data[0] == '\t')
     {
-        label.length += 1;
-        line->data += 1;
-        line->length -= 1;
+        str->data += 1;
+        str->length -= 1;
     }
-    printf("\n LABEL '%.*s'", label.length, label.data);
 }
 
-void processInstruction(String *line)
+String getNextToken(String *line)
 {
-    while (line->data[0] == ' ' || line->data[0] == '\t')
+    String token = (String){.data = line->data, .length = 0};
+    while (line->data[0] != ' ' && line->data[0] != '\t')
     {
+        token.length += 1;
         line->data += 1;
         line->length -= 1;
     }
-    printf("\n'%.*s'", line->length, line->data);
+    return token;
 }
 
 void processLine(String *line)
 {
     if (line->data[0] != ' ' && line->data[0] != '\t')
     {
-        processLabel(line);
+        String label = getNextToken(line);
+        printf("\n LABEL '%.*s'", label.length, label.data);
     }
-    processInstruction(line);
+    ltrim(line);
+    printf("\n'%.*s'", line->length, line->data);
 }
 
 void processFile()
