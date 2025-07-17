@@ -20,3 +20,5 @@ typedef struct SymTab
     SymTabEntry table[256];
     unsigned char tableSize;
 } SymTab;
+
+OperandType searchOrInsertInSymTab(String symbol);
