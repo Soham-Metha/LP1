@@ -3,7 +3,7 @@
 
 void trim(String *str)
 {
-    while (str->data[0] == ' ' || str->data[0] == '\t')
+    while (str->data[0] == ' ' || str->data[0] == '\t' || str->data[0] == '\0')
     {
         str->data += 1;
         str->length -= 1;
