@@ -15,14 +15,15 @@ void printMemoInFormat(MemonicType memo)
 }
 void processLabel(String *line)
 {
-    String label = getNextToken(line, TOKEN_LABEL);
-    printf("\n LABEL '%.*s'", label.length, label.data);
+    Token tok = getNextToken(line, LINE_INST);
+    printf("\n LABEL '%.*s'", tok.value.length, tok.value.data);
 }
 
 void processInstruction(String *line)
 {
     trim(line);
-    printMemoInFormat(getMemonicIdFromName(getNextToken(line, LINE_LABEL)));
+    Token tok = getNextToken(line, LINE_INST);
+    printMemoInFormat(getMemonicIdFromName(tok.value));
 }
 
 void processLine(String *line)
