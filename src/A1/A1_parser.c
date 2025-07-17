@@ -38,7 +38,7 @@ void processInstruction(String *line)
         else if (opr.type == TOKEN_NAME)
         {
             OperandType id = getOperandIdFromName(opr.value);
-            printf(" ID (%d)", id);
+            // printf(" ID (%d)", id);
         }
     }
 }
