@@ -1,6 +1,6 @@
 #pragma once
 
-typedef char OperandType;
+typedef unsigned char OperandType;
 
 typedef enum Register
 {
