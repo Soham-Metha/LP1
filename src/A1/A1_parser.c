@@ -17,7 +17,6 @@ void trim(String *str)
     while (str->data[str->length - 1] == ' ' || str->data[str->length - 1] == '\t' ||
            str->data[str->length - 1] == '\n')
     {
-        str->data += 1;
         str->length -= 1;
     }
 }
