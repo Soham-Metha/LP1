@@ -21,8 +21,15 @@ static MemonicLUT memonicLUT[INSTRUCTION_CNT] = {
     [INST_DL_DS] = {.memo = INST_DL_DS, .name = "DS", .operandCnt = 0},
 };
 
-static OperandLUT operandLUT[COND_CNT] = {
-    [COND_LT] = {.value = COND_LT, .condName = " COND_LT"}, [CONT_LE] = {.value = CONT_LE, .condName = " CONT_LE"},
-    [COND_EQ] = {.value = COND_EQ, .condName = " COND_EQ"}, [COND_GT] = {.value = COND_GT, .condName = " COND_GT"},
-    [COND_GE] = {.value = COND_GE, .condName = " COND_GE"}, [COND_ANY] = {.value = COND_ANY, .condName = "COND_ANY"},
+static OperandLUT condLUT[COND_CNT] = {
+    [COND_LT] = {.value = COND_LT, .name = "LT"}, [CONT_LE] = {.value = CONT_LE, .name = "LE"},
+    [COND_EQ] = {.value = COND_EQ, .name = "EQ"}, [COND_GT] = {.value = COND_GT, .name = "GT"},
+    [COND_GE] = {.value = COND_GE, .name = "GE"}, [COND_ANY] = {.value = COND_ANY, .name = "ANY"},
+};
+
+static OperandLUT condLUT[REGISTER_CNT] = {
+    [REG_AREG] = {.value = REG_AREG, .name = "AREG"},
+    [REG_BREG] = {.value = REG_BREG, .name = "BREG"},
+    [REG_CREG] = {.value = REG_CREG, .name = "CREG"},
+    [REG_DREG] = {.value = REG_DREG, .name = "DREG"},
 };
