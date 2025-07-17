@@ -44,7 +44,6 @@ void processLine(String *line)
         processLabel(line);
     }
     processInstruction(line);
-    printf(" '%.*s'", line->length, line->data);
 }
 
 void processFile()
