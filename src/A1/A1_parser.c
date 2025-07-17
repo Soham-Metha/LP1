@@ -6,7 +6,7 @@ char line[MAX_LINE_WIDTH];
 void processLabel()
 {
     char *labelNm = line;
-    char **LabelPos = &line;
+    char **LabelPos = &line[0];
     while (*LabelPos[0] != ' ' || *LabelPos[0] != '\t')
     {
         LabelPos++;
