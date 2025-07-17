@@ -11,6 +11,7 @@ void processLine(String *line)
     }
     trim(line);
     MemonicType memo = getMemonicIdFromName(getNextToken(line, TOKEN_LABEL));
+    trim(line);
     printf("\n > %d <->'%.*s'", memo, line->length, line->data);
 }
 
