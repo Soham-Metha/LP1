@@ -34,6 +34,6 @@ OperandType getOperandIdFromName(String name)
             return i;
         }
     }
-    printf("\nUNKNOWN OPERAND DETECTED : '%.*s'\n\n", name.length, name.data);
+    printf("UNKNOWN OPERAND DETECTED : '%.*s'", name.length, name.data);
     // exit(1);
 }
