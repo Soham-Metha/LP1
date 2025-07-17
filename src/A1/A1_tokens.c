@@ -46,7 +46,7 @@ Token getNextToken(String *line, LineType type)
             line->length -= 1;
             val.length += 1;
         }
-        printf("%.*s", val.length, val.data);
+        printf("dat %.*s", val.length, val.data);
         trim(line);
         return (Token){.type = TOKEN_CONST, .value = val};
     case '-':
