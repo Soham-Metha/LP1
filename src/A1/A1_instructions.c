@@ -48,7 +48,7 @@ MemonicType getMemonicIdFromName(String name)
             return i;
         }
     }
-    printf("UNKNOWN MEMONIC DETECTED : '%.*s'\n\n", name.length, name.data);
+    printf("UNKNOWN MEMONIC DETECTED : %d '%.*s'\n\n", name.length, name.length, name.data);
     exit(1);
 }
 
