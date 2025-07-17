@@ -20,7 +20,7 @@ void processLabel(String line)
 
 void processInstruction(String line)
 {
-    printf("'%.*s'", line.length, line.data);
+    printf("'%.*s'\n", line.length, line.data);
 }
 
 void processLine(String line)
