@@ -1,7 +1,25 @@
 #pragma once
 #include <A1_tokens.h>
 
-typedef unsigned char OperandType;
+typedef enum OperandType
+{
+    OPERAND_SYMBOL,
+    OPERAND_CONST,
+    OPERAND_REG,
+    OPERAND_COND,
+    OPERAND_CNT,
+} OperandType;
+
+typedef struct Operand
+{
+    OperandType type;
+    union {
+        unsigned char as_symbolID;
+        unsigned char as_condID;
+        unsigned char as_regID;
+        String as_const;
+    };
+} Operand;
 
 typedef enum Register
 {
@@ -30,4 +48,4 @@ typedef struct OperandLUT
     int nameLen;
 } OperandLUT;
 
-char getOperandIdFromName(String name, OperandType *out);
+char getOperandIdFromName(String name, Operand *out);
