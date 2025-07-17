@@ -35,3 +35,8 @@ MemonicType getMemonicIdFromName(String name)
     printf("UNKNOWN MEMONIC DETECTED : %d '%.*s'\n\n", name.length, name.length, name.data);
     exit(1);
 }
+
+int getOperandCountFromId(MemonicType id)
+{
+    return memonicLUT[id].operandCnt;
+}
