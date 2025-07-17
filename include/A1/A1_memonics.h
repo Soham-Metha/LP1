@@ -42,3 +42,5 @@ typedef struct MemonicLUT
 } MemonicLUT;
 
 MemonicType getMemonicIdFromName(String name);
+
+char getOperandCountFromId(MemonicType id);
