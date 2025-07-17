@@ -72,5 +72,5 @@ void processInstruction(String *line)
     }
 
     printInstructionDetailsAndExecuteAssemblerDirectives(
-        (Instruction){.memonic = memoID, .operand1 = opr[0], .operand2 = opr[2]});
+        (Instruction){.memonic = memoID, .operand1 = opr[0], .operand2 = opr[1]});
 }
