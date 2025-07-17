@@ -6,7 +6,7 @@ int IP = 0;
 
 void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
 {
-    printf("\n%-4d\t(", IP);
+    printf("\n%-2d\t(", IP);
     switch (inst.memonic)
     {
     case INST_IS_MOVER:
