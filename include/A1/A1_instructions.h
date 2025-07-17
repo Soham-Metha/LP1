@@ -9,7 +9,6 @@ typedef struct Instruction
     OperandType operand2;
 } Instruction;
 
-
 typedef struct SymTabEntry
 {
     String name;
