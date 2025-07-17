@@ -12,7 +12,7 @@ typedef enum OperandType
 
 typedef struct Operand
 {
-    unsigned char type;
+    OperandType type;
     union {
         unsigned char as_symbolID;
         unsigned char as_condID;
