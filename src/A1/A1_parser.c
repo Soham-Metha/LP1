@@ -9,9 +9,7 @@ void processLine(String *line)
         String label = getNextToken(line, TOKEN_LABEL);
         printf("\n LABEL '%.*s'", label.length, label.data);
     }
-    trim(line);
     MemonicType memo = getMemonicIdFromName(getNextToken(line, TOKEN_LABEL));
-    trim(line);
     printf("\n > %d <->'%.*s'", memo, line->length, line->data);
 }
 
