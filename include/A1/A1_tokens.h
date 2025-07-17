@@ -33,4 +33,4 @@ typedef struct Token
 
 void trim(String *str);
 
-String getNextToken(String *line, LineType type);
+Token getNextToken(String *line, LineType type);
