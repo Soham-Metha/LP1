@@ -36,7 +36,6 @@ Token getNextToken(String *line, LineType type)
         line->data += 1;
         line->length -= 1;
         val.data += 1;
-        val.length -= 1;
         while (line->data[0] != '\'')
         {
             if (line->length == 0)
