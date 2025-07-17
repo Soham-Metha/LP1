@@ -20,6 +20,11 @@ void processLabel(String *line)
 
 void processInstruction(String *line)
 {
+    while (line->data[0] == ' ' || line->data[0] == '\t')
+    {
+        line->data += 1;
+        line->length -= 1;
+    }
     printf("\n'%.*s'", line->length, line->data);
 }
 
