@@ -23,7 +23,8 @@ void processLine(String *line)
     }
     trim(line);
     MemonicType memo = getMemonicIdFromName(getNextToken(line, TOKEN_LABEL));
-    printf("\n > %X <->'%.*s'", memo, line->length, line->data);
+    printMemoInFormat(memo);
+    printf("> '%.*s'", line->length, line->data);
 }
 
 void processFile()
