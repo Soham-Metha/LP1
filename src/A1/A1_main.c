@@ -1,5 +1,4 @@
-#include <stdio.h>
-#define MAX_LINE_WIDTH 100
+#include <A1_parser.h>
 
 int main()
 {
