@@ -1,4 +1,4 @@
-#include <A1_symtab.h>
+#include <A1_instructions.h>
 #include <A1_parser.h>
 
 void processLine(String *line)
