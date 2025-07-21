@@ -10,7 +10,7 @@ void trim(String *str)
     }
 
     while (str->data[str->length - 1] == ' ' || str->data[str->length - 1] == '\t' ||
-           str->data[str->length - 1] == '\n')
+           str->data[str->length - 1] == '\n' || str->data[str->length - 1] == '\0')
     {
         str->length -= 1;
     }
@@ -27,32 +27,40 @@ Token getNextToken(String *line, LineType type)
     {
     case '=':
         toktype = TOKEN_LIT;
-        line->data += 1;
-        line->length -= 1;
-        val.data += 1;
+        { // CHOP 1 CHARACTER : = : FROM START
+            line->data += 1;
+            line->length -= 1;
+            val.data += 1;
+        }
         __attribute__((fallthrough));
     case '\'':
         if (toktype != TOKEN_LIT)
             toktype = TOKEN_CONST;
-        line->data += 1;
-        line->length -= 1;
-        val.data += 1;
+        { // CHOP 1 CHARACTER : ' : FROM START
+            line->data += 1;
+            line->length -= 1;
+            val.data += 1;
+        }
         while (line->data[0] != '\'')
-        {
+        { // SEARCH FOR CLOSING BRACKET
             if (line->length == 0)
             {
                 printf("\nCOULDNT FIND A CLOSING ' \' '");
             }
-            line->data += 1;
-            line->length -= 1;
-            val.length += 1;
+            { // CHOP CHARACTER FROM line AND MOVE IT TO VAL
+                line->data += 1;
+                line->length -= 1;
+                val.length += 1;
+            }
         }
         return (Token){.type = toktype, .value = val};
 
     default:
         toktype = (type == LINE_LABEL) ? TOKEN_LABEL : TOKEN_NAME;
+
         if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
             toktype = TOKEN_CONST;
+
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
             line->data += 1;
