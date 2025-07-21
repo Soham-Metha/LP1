@@ -14,28 +14,35 @@ void processInstruction(String *line)
     MemonicType memoID = getMemonicIdFromName(tok.value);
 
     unsigned char oprCnt = getOperandCountFromId(memoID);
+    Token oprTok;
     Operand opr1, opr2;
-    Token oprTok = getNextToken(line, LINE_INST);
-    if (oprTok.type == TOKEN_CONST)
+    if (oprCnt > 0)
     {
-        opr1 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
-    }
-    else if (!getOperandIdFromName(oprTok.value, &opr1))
-    {
-        // printf("%.*s", oprTok.value.length, oprTok.value.data);
-        opr1 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
-    }
-    oprTok = getNextToken(line, LINE_INST);
-    if (oprTok.type == TOKEN_CONST)
-    {
-        opr2 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
-    }
-    else if (!getOperandIdFromName(oprTok.value, &opr2))
-    {
-        // printf("%.*s", oprTok.value.length, oprTok.value.data);
-        opr2 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
+        oprTok = getNextToken(line, LINE_INST);
+        if (oprTok.type == TOKEN_CONST)
+        {
+            opr1 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
+        }
+        else if (!getOperandIdFromName(oprTok.value, &opr1))
+        {
+            // printf("%.*s", oprTok.value.length, oprTok.value.data);
+            opr1 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
+        }
     }
 
+    if (oprCnt > 1)
+    {
+        oprTok = getNextToken(line, LINE_INST);
+        if (oprTok.type == TOKEN_CONST)
+        {
+            opr2 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
+        }
+        else if (!getOperandIdFromName(oprTok.value, &opr2))
+        {
+            // printf("%.*s", oprTok.value.length, oprTok.value.data);
+            opr2 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
+        }
+    }
     printInstructionDetailsAndExecuteAssemblerDirectives(
         (Instruction){.memonic = memoID, .operand1 = opr1, .operand2 = opr2});
 }
