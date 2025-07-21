@@ -20,6 +20,7 @@ void __LTORG(Instruction inst)
 {
     IP += AllocateMemoryToLitTab(IP);
 }
+
 void __ORIGIN(Instruction inst);
 
 int getIP()
