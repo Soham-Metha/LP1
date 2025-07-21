@@ -24,7 +24,7 @@ void processInstruction(String *line)
         }
         else if (oprTok.type == TOKEN_LIT)
         {
-            opr[i] = (Operand){.type = OPERAND_CONST, .as_const = searchOrInsertInLitTab(oprTok.value)};
+            opr[i] = (Operand){.type = OPERAND_CONST, .as_symbolID = searchOrInsertInLitTab(oprTok.value)};
         }
         else if (!getOperandIdFromName(oprTok.value, &opr[i]))
         {
