@@ -4,11 +4,9 @@
 
 int IP = 0;
 
-void __END()
-{
-    IP += AllocateMemoryToLitTab(IP);
-}
 void __EQU(Instruction inst);
+void __ORIGIN(Instruction inst);
+
 void __START(Instruction inst)
 {
     if (inst.operand1.as_const.length)
@@ -16,12 +14,16 @@ void __START(Instruction inst)
         sscanf(inst.operand1.as_const.data, "%d", &IP);
     }
 }
-void __LTORG()
+
+OperandType __LTORG()
 {
-    IP += AllocateMemoryToLitTab(IP);
+    return AllocateMemoryToLitTab(IP);
 }
 
-void __ORIGIN(Instruction inst);
+OperandType __END()
+{
+    return AllocateMemoryToLitTab(IP);
+}
 
 int getIP()
 {
