@@ -4,7 +4,10 @@
 
 int IP = 0;
 
-void __END(Instruction inst);
+void __END(Instruction inst)
+{
+    IP += AllocateMemoryToLitTab(IP);
+}
 void __EQU(Instruction inst);
 void __START(Instruction inst)
 {
@@ -13,7 +16,10 @@ void __START(Instruction inst)
         sscanf(inst.operand1.as_const.data, "%d", &IP);
     }
 }
-void __LTORG(Instruction inst);
+void __LTORG(Instruction inst)
+{
+    IP += AllocateMemoryToLitTab(IP);
+}
 void __ORIGIN(Instruction inst);
 
 int getIP()
