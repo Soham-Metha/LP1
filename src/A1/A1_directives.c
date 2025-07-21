@@ -23,7 +23,7 @@ int getIP()
 
 void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
 {
-    printf("\n %3d | \t(", IP);
+    printf("\n %3d | (", IP);
     switch (inst.memonic)
     {
     case INST_IS_MOVER:
