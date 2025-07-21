@@ -30,6 +30,7 @@ Token getNextToken(String *line, LineType type)
         line->data += 1;
         line->length -= 1;
         val.data += 1;
+        __attribute__((fallthrough));
     case '\'':
         if (toktype != TOKEN_LIT)
             toktype = TOKEN_CONST;
