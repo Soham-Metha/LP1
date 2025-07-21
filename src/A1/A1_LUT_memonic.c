@@ -1,4 +1,4 @@
-#include <A1_memonics.h>
+#include <A1_declare_memonics.h>
 #include <stdio.h>
 #include <stdlib.h>
 
