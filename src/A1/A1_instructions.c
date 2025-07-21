@@ -23,7 +23,7 @@ void UpdateAddressInSymTab(String symbol, int address)
     for (OperandType i = 0; i < table.tableSize; i++)
     {
         if (table.table[i].name.length == symbol.length &&
-            strncmp(table.table[i].name.data, symbol.data, symbol.length))
+            strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0)
         {
             table.table[i].addr = address;
             return;
