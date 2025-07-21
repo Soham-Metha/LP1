@@ -53,32 +53,17 @@ Token getNextToken(String *line, LineType type)
             val.length += 1;
         }
         return (Token){.type = TOKEN_CONST, .value = val};
-    case '-':
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
+    default:
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
             line->data += 1;
             line->length -= 1;
             val.length += 1;
         }
-        return (Token){.type = TOKEN_CONST, .value = val};
+        if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data == '-')
+            return (Token){.type = TOKEN_CONST, .value = val};
+        if (type == LINE_LABEL)
+            return (Token){.type = TOKEN_LABEL, .value = val};
+        return (Token){.type = TOKEN_NAME, .value = val};
     }
-    while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
-    {
-        line->data += 1;
-        line->length -= 1;
-        val.length += 1;
-    }
-    if (type == LINE_LABEL)
-        return (Token){.type = TOKEN_LABEL, .value = val};
-    return (Token){.type = TOKEN_NAME, .value = val};
 }
