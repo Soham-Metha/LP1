@@ -1,4 +1,4 @@
-#include <A1_operands.h>
+#include <A1_declare_operands.h>
 #include <stdlib.h>
 
 static OperandLUT condLUT[COND_CNT] = {
