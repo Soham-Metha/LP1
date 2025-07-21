@@ -34,8 +34,8 @@ OperandType AllocateMemoryToLitTab(int address)
         printf("-%d- -%d-", i, address);
     }
     i = poolPos; // TEMPORARILY STORE
-    poolPos = litTable.tableSize;
-    return poolPos - i - 1;
+    poolPos = litTable.tableSize - 1;
+    return poolPos - i;
 }
 
 void printLitTab()
