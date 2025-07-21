@@ -13,6 +13,7 @@ typedef enum TokenType
     TOKEN_LABEL,
     TOKEN_CONST,
     TOKEN_NAME,
+    TOKEN_LIT,
     TOKEN_CNT
 } TokenType;
 
