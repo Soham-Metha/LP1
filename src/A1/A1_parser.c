@@ -22,6 +22,10 @@ void processInstruction(String *line)
         {
             opr[i] = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
         }
+        else if (oprTok.type == TOKEN_LIT)
+        {
+            opr[i] = (Operand){.type = OPERAND_CONST, .as_const = searchOrInsertInLitTab(oprTok.value)};
+        }
         else if (!getOperandIdFromName(oprTok.value, &opr[i]))
         {
             opr[i] = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
