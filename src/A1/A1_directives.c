@@ -56,7 +56,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         IP += 1;
         break;
     }
-    printf("%d)", inst.memonic & 0x0F);
+    printf("%2d)", inst.memonic & 0x0F);
 
     unsigned char oprCnt = getOperandCountFromId(inst.memonic);
     if (oprCnt > 0)
