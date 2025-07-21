@@ -17,7 +17,9 @@ void __START(Instruction inst)
 
 void __LTORG()
 {
+    printf(" START ALLOCATION AT %d", IP);
     IP += AllocateMemoryToLitTab(IP);
+    printf(" END ALLOCATION AT %d", IP);
 }
 
 void __END()
