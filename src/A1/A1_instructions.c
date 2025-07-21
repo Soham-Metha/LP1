@@ -15,7 +15,9 @@ OperandType searchOrInsertInSymTab(String symbol)
             return i;
         }
     }
-    table.table[table.tableSize++] = (SymTabEntry){.name = symbol};
+    char *deepcopy = malloc(symbol.length);
+    memcpy(deepcopy, symbol.data, symbol.length);
+    table.table[table.tableSize++] = (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}};
     printf("\nINSERTED '%.*s'-'%.*s'", table.table[table.tableSize - 1].name.length,
            table.table[table.tableSize - 1].name.data, symbol.length, symbol.data);
     return table.tableSize - 1;
@@ -28,7 +30,8 @@ void UpdateAddressInSymTab(String symbol, int address)
         if (table.table[i].name.length == symbol.length &&
             (strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0))
         {
-            // printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length, symbol.data);
+            // printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length,
+            // symbol.data);
             table.table[i].addr = address;
             return;
         }
