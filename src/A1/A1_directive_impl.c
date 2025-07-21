@@ -1,6 +1,6 @@
 #include <A1_instructions.h>
+#include <A1_line_tokenizer.h>
 #include <A1_parser.h>
-#include <A1_tokens.h>
 
 int IP = 0;
 
