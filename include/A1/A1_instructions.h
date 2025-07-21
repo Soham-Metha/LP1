@@ -1,6 +1,6 @@
 #pragma once
-#include <A1_memonics.h>
-#include <A1_operands.h>
+#include <A1_declare_memonics.h>
+#include <A1_declare_operands.h>
 
 typedef struct Instruction
 {
