@@ -26,3 +26,9 @@ OperandType searchOrInsertInSymTab(String symbol);
 void UpdateAddressInSymTab(String symbol, int address);
 
 void printSymTab();
+
+OperandType searchOrInsertInLitTab(String symbol);
+
+void UpdateAddressInLitTab(String symbol, int address);
+
+void printLitTab();
