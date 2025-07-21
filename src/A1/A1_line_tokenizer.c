@@ -19,6 +19,7 @@ void trim(String *str)
 Token getNextToken(String *line, LineType type)
 {
     trim(line);
+
     TokenType toktype = TOKEN_CNT;
     String val = (String){.data = line->data, .length = 0};
     switch (line->data[0])
