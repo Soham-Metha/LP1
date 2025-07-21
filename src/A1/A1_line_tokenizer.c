@@ -22,6 +22,7 @@ Token getNextToken(String *line, LineType type)
 
     TokenType toktype = TOKEN_CNT;
     String val = (String){.data = line->data, .length = 0};
+
     switch (line->data[0])
     {
     case '=':
@@ -46,6 +47,7 @@ Token getNextToken(String *line, LineType type)
             val.length += 1;
         }
         return (Token){.type = toktype, .value = val};
+
     default:
         toktype = (type == LINE_LABEL) ? TOKEN_LABEL : TOKEN_NAME;
         if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
