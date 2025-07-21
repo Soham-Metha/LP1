@@ -5,7 +5,7 @@ SymTab table;
 
 OperandType searchOrInsertInSymTab(String symbol)
 {
-    // printf("%.*s", symbol.length, symbol.data);
+    printf("%.*s", symbol.length, symbol.data);
     for (OperandType i = 0; i < table.tableSize; i++)
     {
         if (table.table[i].name.length == symbol.length &&
@@ -14,7 +14,7 @@ OperandType searchOrInsertInSymTab(String symbol)
             return i;
         }
     }
-    table.table[table.tableSize++] = (SymTabEntry){.name.data = symbol.data, .name.length = symbol.length};
+    table.table[table.tableSize++] = (SymTabEntry){.name = symbol};
     return table.tableSize - 1;
 }
 
