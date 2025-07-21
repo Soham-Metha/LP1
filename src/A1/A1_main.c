@@ -12,7 +12,7 @@ void processLine(String *line)
 
 void processFile()
 {
-    printf("\n===================== OUTPUT =========================\n");
+    printf("\n===================== OUTPUT =======================\n");
     char line[MAX_LINE_WIDTH];
     while (fgets(line, MAX_LINE_WIDTH, stdin) != NULL)
     {
@@ -21,11 +21,11 @@ void processFile()
             continue;
         processLine(&lineView);
     }
-    printf("\n\n===================== OUTPUT =========================\n");
+    printf("\n\n===================== OUTPUT =======================\n");
     printSymTab();
-    printf("\n\n===================== OUTPUT =========================\n");
+    printf("\n\n===================== OUTPUT =======================\n");
     printLitTab();
-    printf("\n\n===================== OUTPUT =========================\n");
+    printf("\n\n===================== OUTPUT =======================\n");
 }
 
 int main()
