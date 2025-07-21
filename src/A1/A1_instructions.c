@@ -29,6 +29,8 @@ void UpdateAddressInSymTab(String symbol, int address)
             return;
         }
     }
+    printf("%.*s-%.*s", table.table[table.tableSize].name.length, table.table[table.tableSize].name.data, symbol.length,
+           symbol.data);
     table.table[table.tableSize++] = (SymTabEntry){.name = symbol, .addr = address};
 }
 
