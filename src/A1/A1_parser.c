@@ -24,7 +24,6 @@ void processInstruction(String *line)
         }
         else if (!getOperandIdFromName(oprTok.value, &opr[i]))
         {
-            // printf("%.*s", oprTok.value.length, oprTok.value.data);
             opr[i] = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
         }
     }
