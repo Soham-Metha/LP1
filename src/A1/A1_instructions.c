@@ -25,6 +25,7 @@ void UpdateAddressInSymTab(String symbol, int address)
             strncmp(table.table[i].name.data, symbol.data, symbol.length))
         {
             table.table[i].addr = address;
+            return;
         }
     }
     table.table[table.tableSize++] = (SymTabEntry){.name = symbol, .addr = address};
