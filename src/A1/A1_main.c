@@ -20,6 +20,7 @@ void processFile()
             continue;
         processLine(&lineView);
     }
+    printSymTab();
 }
 
 int main()
