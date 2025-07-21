@@ -60,7 +60,7 @@ Token getNextToken(String *line, LineType type)
             line->length -= 1;
             val.length += 1;
         }
-        if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data == '-')
+        if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
             return (Token){.type = TOKEN_CONST, .value = val};
         if (type == LINE_LABEL)
             return (Token){.type = TOKEN_LABEL, .value = val};
