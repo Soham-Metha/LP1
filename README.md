@@ -1,5 +1,4 @@
 # LP1
-
 Lab practice Codes containing SP, OS and HCI.
 Code is written in C, organized across multiple files.
 

@@ -12,10 +12,12 @@ typedef struct JobQueue
  * arrival time of next batch of jobs(if any)
  * else returns -1
  **/
-int getNextBatchArrivalTime(Job jobQueue[], int rear, int timestamp);
+int getNextBatchArrivalTime(Job jobQueue[], int len, int timestamp);
 
 /*
  * returns shortest remaining job from queue.
  * if all jobs have BT of `0`, returns NULL
  **/
-Job *getNextShortestJobInQueue(Job jobQueue[], int rear, int timestamp);
+Job *getNextShortestJobInQueue(Job jobQueue[], int len, int timestamp);
+
+Job *getNextHighPriorityJobInQueue(Job jobQueue[], int len, int timestamp);
