@@ -22,7 +22,7 @@ B1: clean $(B1)
 A1:= $(BUILDS)/A1.o
 $(eval $(call BUILD_RULE, $(A1),  $(wildcard src/A1/*.c)))
 A1: clean $(A1)
-	@$(A1) < ./extras/assembler_tc1.txt
+	@$(A1) < ./extras/A1_TestCase1.txt
 
 clean:
 	@rm -rf $(BUILDS)/*.o
