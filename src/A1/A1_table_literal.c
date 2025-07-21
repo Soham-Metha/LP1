@@ -33,7 +33,7 @@ OperandType AllocateMemoryToLitTab(int address)
         litTable.table[i].addr = address;
     }
     poolPos = litTable.tableSize;
-    return poolPos - i;
+    return poolPos - i + 1;
 }
 
 void printLitTab()
