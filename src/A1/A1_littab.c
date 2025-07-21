@@ -7,7 +7,7 @@ OperandType poolPos = 0;
 
 OperandType searchOrInsertInLitTab(String symbol)
 {
-    for (OperandType i = 0; i < litTable.tableSize; i++)
+    for (OperandType i = poolPos; i < litTable.tableSize; i++)
     {
         if (litTable.table[i].name.length == symbol.length &&
             (strncmp(litTable.table[i].name.data, symbol.data, symbol.length) == 0))
