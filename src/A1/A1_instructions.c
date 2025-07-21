@@ -1,4 +1,5 @@
 #include <A1_instructions.h>
+#include <stdio.h>
 
 SymTab table;
 
@@ -27,4 +28,12 @@ void UpdateAddressInSymTab(String symbol, int address)
         }
     }
     table.table[table.tableSize++] = (SymTabEntry){.name = symbol, .addr = address};
+}
+
+void printSymTab()
+{
+    for (OperandType i = 0; i < table.tableSize; i++)
+    {
+        printf("\n\t %d : %.*s", table.table->addr, table.table->name.length, table.table->name.data);
+    }
 }
