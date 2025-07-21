@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 SymTab litTable;
+OperandType poolPos = 0;
 
 OperandType searchOrInsertInLitTab(String symbol)
 {
@@ -21,23 +22,15 @@ OperandType searchOrInsertInLitTab(String symbol)
     return litTable.tableSize - 1;
 }
 
-void UpdateAddressInLitTab(String symbol, int address)
+OperandType AllocateMemoryToLitTab(int address)
 {
-    for (OperandType i = 0; i < litTable.tableSize; i++)
+    OperandType i;
+    for (i = poolPos; i < litTable.tableSize; i++, address++)
     {
-        if (litTable.table[i].name.length == symbol.length &&
-            (strncmp(litTable.table[i].name.data, symbol.data, symbol.length) == 0))
-        {
-            litTable.table[i].addr = address;
-            return;
-        }
+        litTable.table[i].addr = address;
     }
-
-    char *deepcopy = malloc(symbol.length);
-    memcpy(deepcopy, symbol.data, symbol.length);
-
-    litTable.table[litTable.tableSize++] =
-        (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}, .addr = address};
+    poolPos = litTable.tableSize;
+    return poolPos - i;
 }
 
 void printLitTab()
