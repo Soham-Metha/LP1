@@ -10,6 +10,7 @@ OperandType searchOrInsertInSymTab(String symbol)
         if (table.table[i].name.length == symbol.length &&
             (strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0))
         {
+            printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length, symbol.data);
             return i;
         }
     }
