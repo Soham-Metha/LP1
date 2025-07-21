@@ -32,6 +32,22 @@ Token getNextToken(String *line, LineType type)
     }
     switch (line->data[0])
     {
+    case '=':
+        line->data += 2;
+        line->length -= 2;
+        val.data += 2;
+        while (line->data[0] != '\'')
+        {
+            if (line->length == 0)
+            {
+                printf("\nCOULDNT FIND A CLOSING ' \' '");
+            }
+            line->data += 1;
+            line->length -= 1;
+            val.length += 1;
+        }
+        return (Token){.type = TOKEN_LIT, .value = val};
+
     case '\'':
         line->data += 1;
         line->length -= 1;
