@@ -1,5 +1,6 @@
 #include <A1_instructions.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 SymTab table;
 
