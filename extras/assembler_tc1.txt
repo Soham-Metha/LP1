@@ -1,7 +1,7 @@
 
         START   101
         READ    N
-        MOVER   BREG ONE
+        MOVER   BREG ='1'
         MOVEM   BREG TERM
 AGAIN   MULT    BREG TERM
         MOVER   CREG TERM
