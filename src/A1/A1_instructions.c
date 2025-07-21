@@ -46,7 +46,6 @@ void printSymTab()
 {
     for (OperandType i = 0; i < table.tableSize; i++)
     {
-        printf("\n\t %-2d | %d \t: '%.*s'", i, table.table[i].addr, table.table[i].name.length,
-               table.table[i].name.data);
+        printf("\n %-2d | %d \t: '%.*s'", i, table.table[i].addr, table.table[i].name.length, table.table[i].name.data);
     }
 }
