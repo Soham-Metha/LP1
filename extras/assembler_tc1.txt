@@ -5,11 +5,12 @@
         MOVEM   BREG TERM
 AGAIN   MULT    BREG TERM
         MOVER   CREG TERM
-        ADD     CREG ONE
+        LTORG
+        ADD     CREG ='1'
         MOVEM   CREG TERM
         COMP    CREG N
         BC      LE AGAIN
-        DIV     BREG TWO
+        DIV     BREG ='2'
         MOVEM   BREG RESULT
         PRINT   RESULT
         STOP
