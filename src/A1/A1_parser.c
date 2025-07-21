@@ -14,39 +14,21 @@ void processInstruction(String *line)
     MemonicType memoID = getMemonicIdFromName(tok.value);
 
     unsigned char oprCnt = getOperandCountFromId(memoID);
-    Token oprTok;
-    Operand opr1, opr2;
-    if (oprCnt > 0)
+    Operand opr[2];
+    for (unsigned char i = 0; i < oprCnt; i++)
     {
-        oprTok = getNextToken(line, LINE_INST);
+        Token oprTok = getNextToken(line, LINE_INST);
         if (oprTok.type == TOKEN_CONST)
         {
-            opr1 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
+            opr[i] = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
         }
-        else if (!getOperandIdFromName(oprTok.value, &opr1))
+        else if (!getOperandIdFromName(oprTok.value, &opr[i]))
         {
             // printf("%.*s", oprTok.value.length, oprTok.value.data);
-            opr1 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
+            opr[i] = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
         }
     }
-    else
-        opr1 = (Operand){0};
 
-    if (oprCnt > 1)
-    {
-        oprTok = getNextToken(line, LINE_INST);
-        if (oprTok.type == TOKEN_CONST)
-        {
-            opr2 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
-        }
-        else if (!getOperandIdFromName(oprTok.value, &opr2))
-        {
-            // printf("%.*s", oprTok.value.length, oprTok.value.data);
-            opr2 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
-        }
-    }
-    else
-        opr2 = (Operand){0};
     printInstructionDetailsAndExecuteAssemblerDirectives(
-        (Instruction){.memonic = memoID, .operand1 = opr1, .operand2 = opr2});
+        (Instruction){.memonic = memoID, .operand1 = opr[0], .operand2 = opr[1]});
 }
