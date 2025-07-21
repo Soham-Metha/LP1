@@ -8,7 +8,7 @@ OperandType searchOrInsertInSymTab(String symbol)
     for (OperandType i = 0; i < table.tableSize; i++)
     {
         if (table.table[i].name.length == symbol.length &&
-            strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0)
+            (strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0))
         {
             return i;
         }
@@ -24,7 +24,7 @@ void UpdateAddressInSymTab(String symbol, int address)
     for (OperandType i = 0; i < table.tableSize; i++)
     {
         if (table.table[i].name.length == symbol.length &&
-            strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0)
+            (strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0))
         {
             // printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length, symbol.data);
             table.table[i].addr = address;
