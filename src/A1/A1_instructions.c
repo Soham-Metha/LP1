@@ -24,13 +24,11 @@ void UpdateAddressInSymTab(String symbol, int address)
         if (table.table[i].name.length == symbol.length &&
             strncmp(table.table[i].name.data, symbol.data, symbol.length) == 0)
         {
-            printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length, symbol.data);
+            // printf("%.*s-%.*s", table.table[i].name.length, table.table[i].name.data, symbol.length, symbol.data);
             table.table[i].addr = address;
             return;
         }
     }
-    printf("%.*s-%.*s", table.table[table.tableSize].name.length, table.table[table.tableSize].name.data, symbol.length,
-           symbol.data);
     table.table[table.tableSize++] = (SymTabEntry){.name = symbol, .addr = address};
 }
 
