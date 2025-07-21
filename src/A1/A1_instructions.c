@@ -14,7 +14,7 @@ OperandType searchOrInsertInSymTab(String symbol)
             return i;
         }
     }
-    table.table[table.tableSize++] = (SymTabEntry){.name = symbol};
+    table.table[table.tableSize++] = (SymTabEntry){.name.data = symbol.data, .name.length = symbol.length};
     return table.tableSize - 1;
 }
 
