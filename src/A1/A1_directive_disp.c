@@ -55,11 +55,11 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         break;
     case INST_AD_END:
         printf("AD, ");
-        __END();
+        IP += __END();
         break;
     case INST_AD_LTORG:
         printf("AD, ");
-        __LTORG();
+        IP += __LTORG();
         break;
     case INST_AD_EQU:
     case INST_AD_ORIGIN:
