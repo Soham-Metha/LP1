@@ -24,6 +24,8 @@ void processFile()
     printf("\n\n===================== OUTPUT =========================\n");
     printSymTab();
     printf("\n\n===================== OUTPUT =========================\n");
+    printLitTab();
+    printf("\n\n===================== OUTPUT =========================\n");
 }
 
 int main()
