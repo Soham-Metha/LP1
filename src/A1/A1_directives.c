@@ -4,7 +4,7 @@
 
 int IP = 0;
 
-void __END(Instruction inst)
+void __END()
 {
     IP += AllocateMemoryToLitTab(IP);
 }
@@ -16,7 +16,7 @@ void __START(Instruction inst)
         sscanf(inst.operand1.as_const.data, "%d", &IP);
     }
 }
-void __LTORG(Instruction inst)
+void __LTORG()
 {
     IP += AllocateMemoryToLitTab(IP);
 }
@@ -52,8 +52,14 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         __START(inst);
         break;
     case INST_AD_END:
-    case INST_AD_EQU:
+        printf("AD, ");
+        __END();
+        break;
     case INST_AD_LTORG:
+        printf("AD, ");
+        __LTORG();
+        break;
+    case INST_AD_EQU:
     case INST_AD_ORIGIN:
         printf("AD, ");
         break;
