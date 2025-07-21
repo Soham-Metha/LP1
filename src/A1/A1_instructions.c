@@ -38,7 +38,8 @@ void UpdateAddressInSymTab(String symbol, int address)
     char *deepcopy = malloc(symbol.length);
     memcpy(deepcopy, symbol.data, symbol.length);
 
-    table.table[table.tableSize++] = (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}};
+    table.table[table.tableSize++] =
+        (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}, .addr = address};
 }
 
 void printSymTab()
