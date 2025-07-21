@@ -2,37 +2,9 @@
 #include <A1_parser.h>
 #include <A1_tokens.h>
 
-int IP = 0;
-
-void __EQU(Instruction inst);
-void __ORIGIN(Instruction inst);
-
-void __START(Instruction inst)
-{
-    if (inst.operand1.as_const.length)
-    {
-        sscanf(inst.operand1.as_const.data, "%d", &IP);
-    }
-}
-
-OperandType __LTORG()
-{
-    return AllocateMemoryToLitTab(IP);
-}
-
-OperandType __END()
-{
-    return AllocateMemoryToLitTab(IP);
-}
-
-int getIP()
-{
-    return IP;
-}
-
 void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
 {
-    printf("\n %3d | (", IP);
+    printf("\n %3d | (", getIP());
     switch (inst.memonic)
     {
     case INST_IS_MOVER:
@@ -47,7 +19,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     case INST_IS_DIV:
     case INST_IS_BC:
         printf("IS, ");
-        IP += 1;
+        incrIP();
         break;
     case INST_AD_START:
         printf("AD, ");
@@ -55,11 +27,11 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         break;
     case INST_AD_END:
         printf("AD, ");
-        IP += __END();
+        __END();
         break;
     case INST_AD_LTORG:
         printf("AD, ");
-        IP += __LTORG();
+        __LTORG();
         break;
     case INST_AD_EQU:
     case INST_AD_ORIGIN:
@@ -68,7 +40,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     case INST_DL_DC:
     case INST_DL_DS:
         printf("DL, ");
-        IP += 1;
+        incrIP();
         break;
     }
     printf("%2d)", inst.memonic & 0x0F);
