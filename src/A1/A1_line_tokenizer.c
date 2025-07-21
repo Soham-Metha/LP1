@@ -54,16 +54,15 @@ Token getNextToken(String *line, LineType type)
         }
         return (Token){.type = TOKEN_CONST, .value = val};
     default:
+        TokenType toktype = (type == LINE_LABEL) ? TOKEN_LABEL : TOKEN_NAME;
+        if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
+            toktype = TOKEN_CONST;
         while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
         {
             line->data += 1;
             line->length -= 1;
             val.length += 1;
         }
-        if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
-            return (Token){.type = TOKEN_CONST, .value = val};
-        if (type == LINE_LABEL)
-            return (Token){.type = TOKEN_LABEL, .value = val};
-        return (Token){.type = TOKEN_NAME, .value = val};
+        return (Token){.type = toktype, .value = val};
     }
 }
