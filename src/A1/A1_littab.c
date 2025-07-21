@@ -15,11 +15,13 @@ OperandType searchOrInsertInLitTab(String symbol)
             return i;
         }
     }
-    char *deepcopy = malloc(symbol.length);
-    memcpy(deepcopy, symbol.data, symbol.length);
+    { // INSERT SYMBOL IN LIT TAB AND INCREASE IT's SIZE
+        char *deepcopy = malloc(symbol.length);
+        memcpy(deepcopy, symbol.data, symbol.length);
 
-    litTable.table[litTable.tableSize++] = (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}};
-    return litTable.tableSize - 1;
+        litTable.table[litTable.tableSize++] = (SymTabEntry){.name = {.data = deepcopy, .length = symbol.length}};
+        return litTable.tableSize - 1;
+    }
 }
 
 OperandType AllocateMemoryToLitTab(int address)
