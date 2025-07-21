@@ -53,7 +53,7 @@ Token getNextToken(String *line, LineType type)
             val.length += 1;
         }
         return (Token){.type = TOKEN_CONST, .value = val};
-    default:
+    default: {
         TokenType toktype = (type == LINE_LABEL) ? TOKEN_LABEL : TOKEN_NAME;
         if ((line->data[0] >= '0' && line->data[0] <= '9') || line->data[0] == '-')
             toktype = TOKEN_CONST;
@@ -64,5 +64,6 @@ Token getNextToken(String *line, LineType type)
             val.length += 1;
         }
         return (Token){.type = toktype, .value = val};
+    }
     }
 }
