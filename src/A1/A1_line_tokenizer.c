@@ -20,16 +20,6 @@ Token getNextToken(String *line, LineType type)
 {
     trim(line);
     String val = (String){.data = line->data, .length = 0};
-    if (type == LINE_LABEL)
-    {
-        while (line->data[0] != ' ' && line->data[0] != '\t' && line->data[0] != '\n' && line->data[0] != '\0')
-        {
-            val.length += 1;
-            line->data += 1;
-            line->length -= 1;
-        }
-        return (Token){.type = TOKEN_LABEL, .value = val};
-    }
     switch (line->data[0])
     {
     case '=':
@@ -88,5 +78,7 @@ Token getNextToken(String *line, LineType type)
         line->length -= 1;
         val.length += 1;
     }
+    if (type == LINE_LABEL)
+        return (Token){.type = TOKEN_LABEL, .value = val};
     return (Token){.type = TOKEN_NAME, .value = val};
 }
