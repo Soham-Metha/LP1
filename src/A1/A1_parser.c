@@ -29,6 +29,8 @@ void processInstruction(String *line)
             opr1 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
         }
     }
+    else
+        opr1 = (Operand){0};
 
     if (oprCnt > 1)
     {
@@ -43,6 +45,8 @@ void processInstruction(String *line)
             opr2 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
         }
     }
+    else
+        opr2 = (Operand){0};
     printInstructionDetailsAndExecuteAssemblerDirectives(
         (Instruction){.memonic = memoID, .operand1 = opr1, .operand2 = opr2});
 }
