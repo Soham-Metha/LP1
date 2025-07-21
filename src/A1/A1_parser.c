@@ -25,7 +25,7 @@ void processInstruction(String *line)
         // printf("%.*s", oprTok.value.length, oprTok.value.data);
         opr1 = (Operand){.type = OPERAND_SYMBOL, .as_symbolID = searchOrInsertInSymTab(oprTok.value)};
     }
-    Token oprTok = getNextToken(line, LINE_INST);
+    oprTok = getNextToken(line, LINE_INST);
     if (oprTok.type == TOKEN_CONST)
     {
         opr2 = (Operand){.type = OPERAND_CONST, .as_const = oprTok.value};
