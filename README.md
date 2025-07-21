@@ -1,8 +1,17 @@
 # LP1
+
 Lab practice Codes containing SP, OS and HCI.
 Code is written in C, organized across multiple files.
 
 # Currently done:
+
+## A1
+
+![IMAGE](extras/A1_Assembler_Pass_1.png)
+
+### LOC
+
+![IMAGE](extras/A1_LOC_STATS.png)
 
 ## B1
 
