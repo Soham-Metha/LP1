@@ -63,7 +63,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
     {
         if (inst.operand1.type == OPERAND_COND)
         {
-            printf(" | (%d)", inst.operand1.as_condID);
+            printf(" | (R, %2d)", inst.operand1.as_condID);
         }
         else if (inst.operand1.type == OPERAND_CONST)
         {
@@ -71,14 +71,14 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         }
         else
         {
-            printf(" | (S, %d)", inst.operand1.as_symbolID);
+            printf(" | (S, %2d)", inst.operand1.as_symbolID);
         }
     }
     if (oprCnt > 1)
     {
         if (inst.operand2.type == OPERAND_COND)
         {
-            printf(" | (%d)", inst.operand2.as_condID);
+            printf(" | (R, %2d)", inst.operand2.as_condID);
         }
         else if (inst.operand2.type == OPERAND_CONST)
         {
@@ -86,7 +86,7 @@ void printInstructionDetailsAndExecuteAssemblerDirectives(Instruction inst)
         }
         else
         {
-            printf(" | (S, %d)", inst.operand2.as_symbolID);
+            printf(" | (S, %2d)", inst.operand2.as_symbolID);
         }
     }
 }
