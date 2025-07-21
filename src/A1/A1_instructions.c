@@ -15,8 +15,8 @@ OperandType searchOrInsertInSymTab(String symbol)
         }
     }
     table.table[table.tableSize++] = (SymTabEntry){.name = symbol};
-    printf("'%.*s'-'%.*s'", table.table[table.tableSize - 1].name.length, table.table[table.tableSize - 1].name.data,
-           symbol.length, symbol.data);
+    // printf("'%.*s'-'%.*s'", table.table[table.tableSize - 1].name.length, table.table[table.tableSize - 1].name.data,
+        //    symbol.length, symbol.data);
     return table.tableSize - 1;
 }
 
