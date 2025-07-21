@@ -29,6 +29,6 @@ void printSymTab();
 
 OperandType searchOrInsertInLitTab(String symbol);
 
-void UpdateAddressInLitTab(String symbol, int address);
+OperandType AllocateMemoryToLitTab(int address);
 
 void printLitTab();
