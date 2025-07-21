@@ -32,6 +32,7 @@ OperandType AllocateMemoryToLitTab(int address)
     {
         litTable.table[i].addr = address;
     }
+    i = poolPos; // TEMPORARILY STORE
     poolPos = litTable.tableSize;
     return poolPos - i;
 }

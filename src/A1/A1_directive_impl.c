@@ -1,6 +1,6 @@
 #include <A1_instructions.h>
-#include <A1_line_tokenizer.h>
 #include <A1_line_parser.h>
+#include <A1_line_tokenizer.h>
 
 int IP = 0;
 
@@ -32,5 +32,5 @@ int getIP()
 
 void incrIP()
 {
-    IP++;
+    IP += 1;
 }

@@ -4,7 +4,7 @@
 
 void processLabel(String *line)
 {
-    Token tok = getNextToken(line, LINE_INST);
+    Token tok = getNextToken(line, LINE_LABEL);
     UpdateAddressInSymTab(tok.value, getIP());
 }
 
