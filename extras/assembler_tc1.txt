@@ -4,7 +4,7 @@
         MOVER   BREG ='1'
         MOVEM   BREG TERM
 AGAIN   MULT    BREG TERM
-        MOVER   CREG TERM
+        MOVER   CREG ='2'
         LTORG
         ADD     CREG ='1'
         MOVEM   CREG TERM
