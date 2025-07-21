@@ -21,9 +21,9 @@ void processFile()
             continue;
         processLine(&lineView);
     }
-    printf("\n\n===================== OUTPUT =======================\n");
+    printf("\n\n===================== SYMTAB =======================\n");
     printSymTab();
-    printf("\n\n===================== OUTPUT =======================\n");
+    printf("\n\n===================== LITTAB =======================\n");
     printLitTab();
     printf("\n\n===================== OUTPUT =======================\n");
 }
