@@ -5,6 +5,7 @@ SymTab table;
 
 OperandType searchOrInsertInSymTab(String symbol)
 {
+    printf("%.*s", symbol.length, symbol.data);
     for (OperandType i = 0; i < table.tableSize; i++)
     {
         if (table.table[i].name.length == symbol.length &&
